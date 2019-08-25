@@ -3,11 +3,32 @@
   "description": "",
   "version": "0.0.0",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
+  "bin": {
+    "self-help-interactive": "./bin-interactive.js",
+    "self-help": "./bin.js"
+  },
   "bugs": "https://github.com/JamieMason/self-help/issues",
   "contributors": [],
+  "dependencies": {
+    "chalk": "2.4.2",
+    "commander": "3.0.0",
+    "fs-extra": "8.1.0",
+    "inquirer": "6.5.1",
+    "lodash": "4.17.15",
+    "marked": "0.7.0",
+    "marked-terminal": "3.3.0",
+    "xstate": "4.6.7"
+  },
   "devDependencies": {
+    "@types/commander": "2.12.2",
+    "@types/fs-extra": "8.0.0",
+    "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.18",
+    "@types/lodash": "4.14.137",
+    "@types/marked": "0.6.5",
+    "@types/marked-terminal": "3.1.1",
     "@types/node": "12.7.2",
+    "@types/prettier": "1.18.2",
     "expect-more-jest": "2.4.2",
     "jest": "24.9.0",
     "prettier": "1.18.2",
