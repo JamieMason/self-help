@@ -2,10 +2,10 @@
 
 import * as program from 'commander';
 import { isString } from 'lodash';
-import { run } from './interactive';
+import { run } from './markdown';
 
 program
-  .description('navigate a self-help document from the command line')
+  .description('generate markdown from a self-help document')
   .option('-s, --source <path>', 'path to self-help document')
   .parse(process.argv);
 

@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import { prompt } from 'inquirer';
 import { WriteStream } from 'tty';
+import { renderToCli } from './lib/markdown';
 import { TreeInterpreter } from './machine/tree';
 import { Branch, isBranch, isLeaf, Leaf, Node } from './machine/tree/nodes';
-import { renderMarkdown } from './markdown';
 
 interface Answer {
   name: string;
@@ -58,7 +58,7 @@ export const selfHelp = async (interpreter: TreeInterpreter): Promise<void> => {
 
   const renderValue = async (leaf: Leaf) => {
     console.log('');
-    console.log(renderMarkdown(leaf.value));
+    console.log(renderToCli(leaf.value));
   };
 
   interpreter.onTransition(async ({ context: { currentNode }, event, matches }) => {

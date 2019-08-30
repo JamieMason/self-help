@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bin": {
-    "self-help-interactive": "./bin-interactive.js",
-    "self-help": "./bin.js"
+    "self-help-interactive": "./dist/bin-interactive.js",
+    "self-help-markdown": "./dist/bin-markdown.js",
+    "self-help": "./dist/bin.js"
   },
   "bugs": "https://github.com/JamieMason/self-help/issues",
   "contributors": [],

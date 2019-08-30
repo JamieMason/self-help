@@ -1,21 +1,10 @@
-import * as marked from 'marked';
-import * as TerminalRenderer from 'marked-terminal';
-import * as prettier from 'prettier';
+import { resolve } from 'path';
+import { toMarkdownFile } from './lib/markdown';
 
-marked.setOptions({
-  renderer: new TerminalRenderer({
-    reflowText: false,
-    tab: 2,
-  }),
-});
-
-const prettierrc: prettier.Options = {
-  parser: 'markdown',
-  printWidth: 120,
-  proseWrap: 'always',
-  tabWidth: 2,
-  useTabs: false,
+export const run = async ({ sourcePath }: { sourcePath: string }) => {
+  const dataPath = resolve(process.cwd(), sourcePath);
+  const source = require(dataPath);
+  const tree = await source.getData();
+  const markdown = await toMarkdownFile(tree);
+  console.log(markdown);
 };
-
-export const renderMarkdown = (markdown: string) =>
-  marked(prettier.format(markdown, prettierrc)).trim();
