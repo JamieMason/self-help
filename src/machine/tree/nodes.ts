@@ -1,21 +1,5 @@
 import { get, isArray, isFunction, isString } from 'lodash';
-
-export interface Leaf {
-  label: string;
-  value: string;
-}
-
-export interface Branch {
-  children: Node[];
-  label: string;
-}
-
-export interface UnresolvedBranch {
-  children: () => Promise<Node[]>;
-  label: string;
-}
-
-export type Node = Leaf | Branch | UnresolvedBranch;
+import { Branch, Leaf, Node, UnresolvedBranch } from '../../';
 
 const children = (value: any) => get(value, 'children');
 const label = (value: any) => get(value, 'label');

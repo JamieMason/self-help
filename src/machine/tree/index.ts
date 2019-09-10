@@ -1,7 +1,7 @@
 import { assign, interpret, Interpreter, Machine, State, StateMachine } from 'xstate';
+import { Branch, Node } from '../..';
 import { actions } from './actions';
 import { guards } from './guards';
-import { Branch, Node } from './nodes';
 import { services } from './services';
 
 export interface TreeSchema {

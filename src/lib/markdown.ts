@@ -1,7 +1,8 @@
 import * as marked from 'marked';
 import * as TerminalRenderer from 'marked-terminal';
 import * as prettier from 'prettier';
-import { isBranch, isLeaf, isUnresolvedBranch, Node } from '../machine/tree/nodes';
+import { Node } from '..';
+import { isBranch, isLeaf, isUnresolvedBranch } from '../machine/tree/nodes';
 
 marked.setOptions({
   renderer: new TerminalRenderer({

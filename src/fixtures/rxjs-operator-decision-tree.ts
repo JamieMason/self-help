@@ -1,4 +1,4 @@
-import { Branch, Node } from '../machine/tree/nodes';
+import { Branch, Node } from '..';
 
 const getRandom = () => Math.floor(Math.random() * 5) + 1;
 

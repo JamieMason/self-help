@@ -1,6 +1,7 @@
 import { MachineOptions } from 'xstate';
 import { TreeContext, TreeEvent } from '.';
-import { Branch, isChildren, isUnresolvedBranch } from './nodes';
+import { Branch } from '../..';
+import { isChildren, isUnresolvedBranch } from './nodes';
 
 export type TreeServices = MachineOptions<TreeContext, TreeEvent>['services'];
 
