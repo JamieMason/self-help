@@ -80,7 +80,7 @@ export const createTreeMachine = (rootNode: Node, id: string = 'tree-machine'): 
         visitNode: {
           on: {
             '': [
-              { cond: 'isUnresolvedBranch', target: RESOLVE_BRANCH },
+              { cond: 'isAsyncBranch', target: RESOLVE_BRANCH },
               { cond: 'isBranch', target: RENDER_BRANCH },
               { cond: 'isLeaf', target: RENDER_LEAF },
             ],

@@ -2,7 +2,7 @@ import * as marked from 'marked';
 import * as TerminalRenderer from 'marked-terminal';
 import * as prettier from 'prettier';
 import { Node } from '..';
-import { isBranch, isLeaf, isUnresolvedBranch } from '../machine/tree/nodes';
+import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes';
 
 marked.setOptions({
   renderer: new TerminalRenderer({
@@ -28,7 +28,7 @@ const summary = (html: string) => `<summary>${html}</summary>`;
 const details = (title: string, html: string) => `<details>${summary(title)}${ul(html)}</details>`;
 
 export const toMarkdownFile = async (node: Node): Promise<string> => {
-  if (isUnresolvedBranch(node)) {
+  if (isAsyncBranch(node)) {
     const children = await node.children();
     const contents = await getNestedMarkdown(children);
     return li(details(node.label, ul(contents)));

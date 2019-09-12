@@ -1,16 +1,16 @@
 import { Branch, Node } from '..';
 
-const getRandom = () => Math.floor(Math.random() * 5) + 1;
+const withRandomDelay = (children: Node[]) => (): Promise<Node[]> =>
+  new Promise((resolve) =>
+    setTimeout(() => resolve(children), (Math.floor(Math.random() * 5) + 1) * 1000),
+  );
 
-const withDelay = (children: Node[]) => (): Promise<Node[]> =>
-  new Promise((resolve) => setTimeout(() => resolve(children), getRandom() * 1000));
-
-export const getData = (): Branch => ({
+export const getHelpDocument = (): Branch => ({
   label: 'How can we help?',
   children: [
     {
       label: 'I have one existing Observable, and',
-      children: withDelay([
+      children: withRandomDelay([
         {
           label: 'I want to change each emitted value',
           children: [
@@ -530,7 +530,7 @@ export const getData = (): Branch => ({
     },
     {
       label: 'I have some Observables to combine together as one Observable, and',
-      children: withDelay([
+      children: withRandomDelay([
         {
           label: 'I want to receive values only from the Observable that emits a value first',
           value: 'https://rxjs.dev/api/operators/race',
@@ -564,7 +564,7 @@ export const getData = (): Branch => ({
     },
     {
       label: 'I have no Observables yet, and',
-      children: withDelay([
+      children: withRandomDelay([
         {
           label: 'I want to create a new Observable',
           children: [

@@ -30,7 +30,7 @@ const getChoices = (node: Branch): Answer[] =>
 export const run = async ({ sourcePath }: { sourcePath: string }) => {
   const dataPath = resolve(process.cwd(), sourcePath);
   const source = require(dataPath);
-  const tree = await source.getData();
+  const tree = await source.getHelpDocument();
   const interpreter = createTreeInterpreter(tree);
   start(interpreter);
 };

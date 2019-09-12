@@ -1,5 +1,5 @@
 import { get, isArray, isFunction, isString } from 'lodash';
-import { Branch, Leaf, Node, UnresolvedBranch } from '../../';
+import { AsyncBranch, Branch, Leaf, Node } from '../../';
 
 const children = (value: any) => get(value, 'children');
 const label = (value: any) => get(value, 'label');
@@ -14,8 +14,8 @@ export const isChildren = (value: any): value is Node[] =>
 export const isBranch = (value: any): value is Branch =>
   hasLabel(value) && isChildren(children(value));
 
-export const isUnresolvedBranch = (value: any): value is UnresolvedBranch =>
+export const isAsyncBranch = (value: any): value is AsyncBranch =>
   hasLabel(value) && isFunction(children(value));
 
 export const isNode = (value: any): value is Node =>
-  isLeaf(value) || isBranch(value) || isUnresolvedBranch(value);
+  isLeaf(value) || isBranch(value) || isAsyncBranch(value);
