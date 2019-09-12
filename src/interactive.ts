@@ -4,6 +4,7 @@ import { resolve } from 'path';
 import { WriteStream } from 'tty';
 import { Branch, Leaf, Node } from '.';
 import { renderToCli } from './lib/markdown';
+import { tryPanic } from './lib/try-panic';
 import { createTreeInterpreter, TreeInterpreter } from './machine/tree';
 import { isBranch, isLeaf } from './machine/tree/nodes';
 
@@ -29,8 +30,10 @@ const getChoices = (node: Branch): Answer[] =>
 
 export const run = async ({ sourcePath }: { sourcePath: string }) => {
   const dataPath = resolve(process.cwd(), sourcePath);
-  const source = require(dataPath);
-  const tree = await source.getHelpDocument();
+  const REQUIRE_ERROR = `Failed to require('${dataPath}');`;
+  const source = tryPanic(() => require(dataPath), REQUIRE_ERROR);
+  const GET_DOCUMENT_ERROR = `Failed to call getHelpDocument() from ${dataPath}`;
+  const tree = await tryPanic(() => source.getHelpDocument(), GET_DOCUMENT_ERROR);
   const interpreter = createTreeInterpreter(tree);
   start(interpreter);
 };
