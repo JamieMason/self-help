@@ -40,6 +40,11 @@ self-help markdown --source ./path/to/help-document.js
 Markdown is written to [stdout](https://www.computerhope.com/jargon/s/stdout.htm) for you to pipe
 into other Command Line Programs or write to a file.
 
+#### Example
+
+The `self-help` RxJS Operator Decision Tree Example
+[exported as Markdown](https://github.com/JamieMason/self-help/wiki/RxJS-Operator-Decision-Tree).
+
 ## 👩🏽‍💻 Writing Documents
 
 A **Help Document** is a JavaScript Module exporting a `getHelpDocument` method of type
