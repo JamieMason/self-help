@@ -5,7 +5,7 @@
 [![NPM version](http://img.shields.io/npm/v/self-help.svg?style=flat-square)](https://www.npmjs.com/package/self-help)
 [![NPM downloads](http://img.shields.io/npm/dm/self-help.svg?style=flat-square)](https://www.npmjs.com/package/self-help)
 [![Build Status](http://img.shields.io/travis/JamieMason/self-help/master.svg?style=flat-square)](https://travis-ci.org/JamieMason/self-help)
-[![Maintainability](https://api.codeclimate.com/v1/badges/CODE_CLIMATE_HASH/maintainability)](https://codeclimate.com/github/JamieMason/self-help/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3b3da47293acc6cdf1e6/maintainability)](https://codeclimate.com/github/JamieMason/self-help/maintainability)
 [![Follow JamieMason on GitHub](https://img.shields.io/github/followers/JamieMason.svg?style=social&label=Follow)](https://github.com/JamieMason)
 [![Follow fold_left on Twitter](https://img.shields.io/twitter/follow/fold_left.svg?style=social&label=Follow)](https://twitter.com/fold_left)
 
