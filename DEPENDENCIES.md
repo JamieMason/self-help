@@ -44,7 +44,7 @@ npm test
 - [@types/marked-terminal](https://ghub.io/@types/marked-terminal): TypeScript definitions for marked-terminal
 - [@types/node](https://ghub.io/@types/node): TypeScript definitions for Node.js
 - [@types/prettier](https://ghub.io/@types/prettier): TypeScript definitions for prettier
-- [expect-more-jest](https://ghub.io/expect-more-jest): Write Beautiful Specs with Custom Matchers
+- [expect-more-jest](https://ghub.io/expect-more-jest): Write Beautiful Specs with Custom Matchers for Jest
 - [jest](https://ghub.io/jest): Delightful JavaScript Testing.
 - [prettier](https://ghub.io/prettier): Prettier is an opinionated code formatter
 - [rimraf](https://ghub.io/rimraf): A deep deletion module for node (like `rm -rf`)
