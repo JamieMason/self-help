@@ -23,7 +23,6 @@ export interface TreeSchema {
 export interface TreeContext<NodeType = Node> {
   currentNode: NodeType;
   error: Error | null;
-  retries: number;
   rootNode: Node;
 }
 
@@ -71,7 +70,6 @@ export const createTreeMachine = (rootNode: Node, id: string = 'tree-machine'): 
       context: {
         currentNode: rootNode,
         error: null,
-        retries: 0,
         rootNode,
       },
       id,
@@ -106,7 +104,6 @@ export const createTreeMachine = (rootNode: Node, id: string = 'tree-machine'): 
             success: {
               on: {
                 '': {
-                  actions: ['resetRetries'],
                   target: VISIT_NODE,
                 },
               },
@@ -114,7 +111,6 @@ export const createTreeMachine = (rootNode: Node, id: string = 'tree-machine'): 
             failure: {
               on: {
                 RETRY: {
-                  actions: ['incrementRetries'],
                   target: 'loading',
                 },
               },

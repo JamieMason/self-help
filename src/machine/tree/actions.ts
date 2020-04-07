@@ -4,16 +4,17 @@ import { isBranch, isNode } from './nodes';
 
 export type TreeActions = MachineOptions<TreeContext, TreeEvent>['actions'];
 
+const isSelectChildEvent = (event: TreeEvent): event is SelectChildEvent =>
+  event.type === 'SELECT_CHILD';
+
 export const actions: TreeActions = {
-  incrementRetries: assign((context) => ({ retries: context.retries + 1 })),
-  resetRetries: assign(() => ({ retries: 0 })),
-  selectChild: assign<TreeContext, SelectChildEvent | EventObject>(
-    ({ currentNode }, { childIndex: i }) => ({
-      currentNode:
-        isBranch(currentNode) && isNode(currentNode.children[i])
-          ? currentNode.children[i]
-          : currentNode,
-    }),
-  ),
+  selectChild: assign(({ currentNode }, event) => ({
+    currentNode:
+      isSelectChildEvent(event) &&
+      isBranch(currentNode) &&
+      isNode(currentNode.children[event.childIndex])
+        ? currentNode.children[event.childIndex]
+        : currentNode,
+  })),
   selectRoot: assign((context) => ({ currentNode: context.rootNode })),
 };

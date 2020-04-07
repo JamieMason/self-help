@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 
 export const tryPanic = (fn: (...args: any[]) => any, message: string) => {
   try {
