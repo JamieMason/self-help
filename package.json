@@ -15,7 +15,7 @@
     "commander": "5.0.0",
     "fs-extra": "9.0.0",
     "inquirer": "7.1.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "marked": "0.8.2",
     "marked-terminal": "4.0.0",
     "xstate": "4.8.0"
