@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply p-2;
+  @apply font-mono;
+}
+
+.node .node {
+  @apply pl-4;
+}
+
+.btn {
+  @apply inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
