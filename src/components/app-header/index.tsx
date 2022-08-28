@@ -1,6 +1,7 @@
 import codeIcon from '../../img/code.svg';
 import editIcon from '../../img/edit.svg';
 import { EditorApp } from '../types';
+import { DocumentMenu } from './document-menu';
 import { GitHubButton } from './github-button';
 import { HeaderButton } from './header-button';
 import { ThemeButton } from './theme-button';
@@ -16,17 +17,6 @@ export function AppHeader({ setState, state }: Props) {
       next.darkModeEnabled = !next.darkModeEnabled;
     });
   }
-
-  function createFile() {
-    setState((next) => {
-      next.doc = {
-        label: '',
-        children: [],
-      };
-    });
-  }
-
-  function importFile() {}
 
   return (
     <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4">
@@ -59,6 +49,7 @@ export function AppHeader({ setState, state }: Props) {
           Source
         </HeaderButton>
       </div>
+      <DocumentMenu setState={setState} state={state} />
       <GitHubButton />
       <ThemeButton
         darkModeEnabled={state.darkModeEnabled}

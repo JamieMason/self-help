@@ -19,7 +19,7 @@ export function HeaderButton({
     <button
       className={`${classNames} ${
         isActive ? 'cursor-default' : 'opacity-50'
-      } inline-flex items-center px-3 py-2 bg-slate-800 text-sm leading-4 font-medium`}
+      } inline-flex items-center px-3 py-2 bg-slate-800 text-white text-sm leading-4 font-medium`}
       onClick={onClick}
       type="button"
     >

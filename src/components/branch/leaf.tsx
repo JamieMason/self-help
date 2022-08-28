@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function Leaf({ path, setState, state }: Props): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggleIsOpen = () => setIsOpen(!isOpen);
   const leaf: EditorApp.LeafNode = get(state, path);
   const { value, label } = leaf;
