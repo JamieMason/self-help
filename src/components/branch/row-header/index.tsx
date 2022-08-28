@@ -3,6 +3,7 @@ import { DownButton } from './down-button';
 import { LabelField } from './label-field';
 import { RemoveButton } from './remove-button';
 import { ToggleButton } from './toggle-button';
+import { ToolTip } from './tool-tip';
 import { UpButton } from './up-button';
 
 interface Props {
@@ -28,12 +29,24 @@ export function RowHeader({
 }: Props) {
   return (
     <div className="flex items-center mb-1 gap-x-1">
-      <ToggleButton toggleIsOpen={toggleIsOpen} isOpen={isOpen} />
+      <ToolTip label={isOpen ? 'collapse' : 'expand'} position="right">
+        <ToggleButton toggleIsOpen={toggleIsOpen} isOpen={isOpen} />
+      </ToolTip>
       <LabelField label={label} path={path} />
-      {addChild && <AddButton onClick={addChild} />}
-      <RemoveButton onClick={onRemoveNode} />
-      <UpButton onClick={onMoveNodeUp} />
-      <DownButton onClick={onMoveNodeDown} />
+      {addChild && (
+        <ToolTip label="Add child">
+          <AddButton onClick={addChild} />
+        </ToolTip>
+      )}
+      <ToolTip label="Delete item and its children">
+        <RemoveButton onClick={onRemoveNode} />
+      </ToolTip>
+      <ToolTip label="Move up">
+        <UpButton onClick={onMoveNodeUp} />
+      </ToolTip>
+      <ToolTip label="Move down">
+        <DownButton onClick={onMoveNodeDown} />
+      </ToolTip>
     </div>
   );
 }

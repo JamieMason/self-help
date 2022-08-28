@@ -58,3 +58,31 @@ i {
   @apply border;
   @apply dark:border-slate-600;
 }
+
+.tooltip {
+  @apply relative;
+}
+
+.tooltip > .tooltip__bubble {
+  @apply hidden;
+  @apply absolute;
+  @apply rounded-sm;
+  @apply -top-7;
+  @apply p-1;
+  @apply bg-green-600;
+  @apply text-white;
+  @apply text-xs;
+  @apply whitespace-nowrap;
+}
+
+.tooltip--left > .tooltip__bubble {
+  @apply right-0;
+}
+
+.tooltip--right > .tooltip__bubble {
+  @apply left-0;
+}
+
+.tooltip:focus-within > .tooltip__bubble {
+  @apply block;
+}

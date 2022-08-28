@@ -5,6 +5,7 @@ import { Branch } from './branch';
 import { List } from './branch/list';
 import { getInitialState } from './lib/get-initial-state';
 import { writeLocalStorage } from './lib/local-storage';
+import { Source } from './source';
 import { EditorApp } from './types';
 
 export function App() {
@@ -23,9 +24,12 @@ export function App() {
 
   return (
     <AppFrame setState={setState} state={state}>
-      <List>
+      <List className={state.currentRoute === 'editor' ? '' : 'sr-only'}>
         <Branch path="doc" setState={setState} state={state} />
       </List>
+      {state.currentRoute === 'source' && (
+        <Source setState={setState} state={state} />
+      )}
     </AppFrame>
   );
 }

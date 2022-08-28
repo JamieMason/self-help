@@ -1,6 +1,5 @@
-import downloadIcon from '../../img/download.svg';
-import newDocumentIcon from '../../img/new-document.svg';
-import uploadIcon from '../../img/upload.svg';
+import codeIcon from '../../img/code.svg';
+import editIcon from '../../img/edit.svg';
 import { EditorApp } from '../types';
 import { GitHubButton } from './github-button';
 import { HeaderButton } from './header-button';
@@ -29,23 +28,37 @@ export function AppHeader({ setState, state }: Props) {
 
   function importFile() {}
 
-  function exportFile() {}
-
   return (
     <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4">
-      <h1 className="flex-1">
-        <code className="bg-black text-white p-2 rounded-sm">$ self-help</code>
-        <span className="ml-2 text-white font-mono">Editor</span>
+      <h1 className="bg-black text-white p-2 rounded-sm font-mono">
+        $ self-help
       </h1>
-      <HeaderButton onClick={createFile} iconSrc={newDocumentIcon}>
-        Create New
-      </HeaderButton>
-      <HeaderButton onClick={importFile} iconSrc={uploadIcon}>
-        Import
-      </HeaderButton>
-      <HeaderButton onClick={exportFile} iconSrc={downloadIcon}>
-        Export
-      </HeaderButton>
+      <div className="flex-1 flex justify-center">
+        <HeaderButton
+          classNames="rounded-l-md mr-px"
+          iconSrc={editIcon}
+          isActive={state.currentRoute === 'editor'}
+          onClick={() =>
+            setState((next) => {
+              next.currentRoute = 'editor';
+            })
+          }
+        >
+          Editor
+        </HeaderButton>
+        <HeaderButton
+          classNames="rounded-r-md"
+          iconSrc={codeIcon}
+          isActive={state.currentRoute === 'source'}
+          onClick={() =>
+            setState((next) => {
+              next.currentRoute = 'source';
+            })
+          }
+        >
+          Source
+        </HeaderButton>
+      </div>
       <GitHubButton />
       <ThemeButton
         darkModeEnabled={state.darkModeEnabled}

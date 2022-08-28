@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function Branch({ path, setState, state }: Props): JSX.Element {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
   const branch: EditorApp.BranchNode = get(state, path);
   const { children, label } = branch;

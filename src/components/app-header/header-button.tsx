@@ -1,17 +1,25 @@
 import { ComponentChildren } from 'preact';
 
+interface Props {
+  children: ComponentChildren;
+  classNames?: string;
+  iconSrc: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
 export function HeaderButton({
   children,
+  classNames,
   iconSrc,
+  isActive,
   onClick,
-}: {
-  children: ComponentChildren;
-  iconSrc: string;
-  onClick: () => void;
-}) {
+}: Props) {
   return (
     <button
-      className="inline-flex items-center px-3 py-2 bg-slate-800 text-sm leading-4 font-medium rounded-md text-white"
+      className={`${classNames} ${
+        isActive ? 'cursor-default' : 'opacity-50'
+      } inline-flex items-center px-3 py-2 bg-slate-800 text-sm leading-4 font-medium`}
       onClick={onClick}
       type="button"
     >

@@ -3,6 +3,7 @@ import { readLocalStorage } from './local-storage';
 
 export function getInitialState(): EditorApp.State {
   return {
+    currentRoute: 'editor',
     darkModeEnabled: readLocalStorage<boolean>('darkModeEnabled') || false,
     doc: {
       label: 'How can we help?',
