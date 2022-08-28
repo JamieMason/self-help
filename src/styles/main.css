@@ -3,13 +3,10 @@
 @tailwind utilities;
 
 body {
-  @apply p-2;
-
   @apply bg-white;
-  @apply dark:bg-slate-800;
-  @apply text-slate-900;
+  @apply dark:bg-gray-900;
+  @apply text-gray-900;
   @apply dark:text-white;
-  @apply font-mono;
 }
 
 i {
@@ -21,13 +18,14 @@ i {
 }
 
 .field {
-  @apply px-1;
+  @apply p-1;
   @apply bg-transparent;
   @apply rounded;
   @apply text-sm;
   @apply focus:outline-none;
   @apply focus:ring-2;
 
+  @apply font-mono;
   @apply focus:ring-black;
   @apply dark:focus:ring-white;
 }

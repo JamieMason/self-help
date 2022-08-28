@@ -3,6 +3,7 @@ import { useCallback, useState } from 'preact/hooks';
 import { Branch } from './branch';
 import { getInitialState } from './lib/get-initial-state';
 import { List } from './list';
+import { AppFrame } from './app-frame';
 
 export type Node = BranchNode | LeafNode;
 
@@ -33,8 +34,10 @@ export function App() {
   const [state, saveState] = useState<State>(getInitialState);
   const setState = useCallback<SetState>((mutator) => saveState(produce(state, mutator)), [state]);
   return (
-    <List>
-      <Branch path="doc" setState={setState} state={state} />
-    </List>
+    <AppFrame>
+      <List>
+        <Branch path="doc" setState={setState} state={state} />
+      </List>
+    </AppFrame>
   );
 }
