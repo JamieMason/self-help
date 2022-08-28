@@ -1,5 +1,5 @@
-import darkModeIcon from '../img/dark-mode.svg';
-import lightModeIcon from '../img/light-mode.svg';
+import darkModeIcon from '../../img/dark-mode.svg';
+import lightModeIcon from '../../img/light-mode.svg';
 import { IconButton } from './icon-button';
 
 interface Props {

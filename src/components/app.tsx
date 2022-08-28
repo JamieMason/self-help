@@ -2,37 +2,16 @@ import produce from 'immer';
 import { useCallback, useState } from 'preact/hooks';
 import { Branch } from './branch';
 import { getInitialState } from './lib/get-initial-state';
-import { List } from './list';
+import { List } from './branch/list';
 import { AppFrame } from './app-frame';
-
-export type Node = BranchNode | LeafNode;
-
-export interface BranchNode {
-  label: string;
-  children: Node[];
-}
-
-export interface LeafNode {
-  label: string;
-  value: string;
-}
-
-interface State {
-  doc: Node;
-}
-
-type Mutator = (node: Node) => void;
-export type SetState = (mutator: Mutator) => void;
-
-export interface Props {
-  path: string;
-  setState: SetState;
-  state: State;
-}
+import { EditorApp } from './types';
 
 export function App() {
-  const [state, saveState] = useState<State>(getInitialState);
-  const setState = useCallback<SetState>((mutator) => saveState(produce(state, mutator)), [state]);
+  const [state, saveState] = useState<EditorApp.State>(getInitialState);
+  const setState = useCallback<EditorApp.SetState>(
+    (mutator) => saveState(produce(state, mutator)),
+    [state]
+  );
   return (
     <AppFrame>
       <List>

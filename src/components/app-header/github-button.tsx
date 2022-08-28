@@ -1,4 +1,4 @@
-import githubIcon from '../img/github.svg';
+import githubIcon from '../../img/github.svg';
 
 interface Props {}
 
