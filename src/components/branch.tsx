@@ -19,7 +19,7 @@ import { ToggleButton } from './toggle-button';
 import { UpButton } from './up-button';
 
 export function Branch({ path, setState, state }: Props): JSX.Element {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const toggleIsOpen = () => setIsOpen(!isOpen);
   const branch: BranchNode = get(state, path);
   const { children, label } = branch;
