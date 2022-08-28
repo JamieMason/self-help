@@ -15,15 +15,8 @@ export function HeaderButton({
       onClick={onClick}
       type="button"
     >
-      <img
-        alt=""
-        aria-hidden="true"
-        className="-ml-0.5 mr-2 h-5 w-5"
-        height={10}
-        src={iconSrc}
-        width={10}
-      />
-      {children}
+      <img alt="" aria-hidden="true" className="h-5 w-5" height={10} src={iconSrc} width={10} />
+      <span className="hidden md:inline ml-2">{children}</span>
     </button>
   );
 }
