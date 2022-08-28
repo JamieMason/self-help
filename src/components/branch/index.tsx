@@ -62,7 +62,7 @@ export function Branch({ path, setState, state }: Props): JSX.Element {
                 setState={setState}
                 state={state}
               />
-            ) : null
+            ) : null,
           )}
         </List>
       )}

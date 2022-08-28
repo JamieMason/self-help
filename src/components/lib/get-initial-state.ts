@@ -28,7 +28,8 @@ export function getInitialState(): EditorApp.State {
               value: 'https://rxjs.dev/api/operators/pluck',
             },
             {
-              label: 'I want to spy the values being emitted without affecting them',
+              label:
+                'I want to spy the values being emitted without affecting them',
               value: 'https://rxjs.dev/api/operators/tap',
             },
             {
@@ -114,7 +115,8 @@ export function getInitialState(): EditorApp.State {
                       children: [
                         {
                           label: 'emitted just before the current value',
-                          value: 'https://rxjs.dev/api/operators/distinctUntilChanged',
+                          value:
+                            'https://rxjs.dev/api/operators/distinctUntilChanged',
                         },
                         {
                           label: 'emitted some time in the past',
@@ -127,7 +129,8 @@ export function getInitialState(): EditorApp.State {
                       children: [
                         {
                           label: 'emitted just before the current value',
-                          value: 'https://rxjs.dev/api/operators/distinctUntilKeyChanged',
+                          value:
+                            'https://rxjs.dev/api/operators/distinctUntilKeyChanged',
                         },
                       ],
                     },
@@ -144,7 +147,8 @@ export function getInitialState(): EditorApp.State {
                           value: 'https://rxjs.dev/api/operators/throttle',
                         },
                         {
-                          label: 'where time windows are determined by a time duration',
+                          label:
+                            'where time windows are determined by a time duration',
                           value: 'https://rxjs.dev/api/operators/throttleTime',
                         },
                       ],
@@ -157,13 +161,15 @@ export function getInitialState(): EditorApp.State {
                           value: 'https://rxjs.dev/api/operators/audit',
                         },
                         {
-                          label: 'where time windows are determined by a time duration',
+                          label:
+                            'where time windows are determined by a time duration',
                           value: 'https://rxjs.dev/api/operators/auditTime',
                         },
                       ],
                     },
                     {
-                      label: 'by emitting the last value as soon as enough silence has occured',
+                      label:
+                        'by emitting the last value as soon as enough silence has occured',
                       children: [
                         {
                           label:
@@ -189,7 +195,8 @@ export function getInitialState(): EditorApp.State {
                   value: 'https://rxjs.dev/api/operators/reduce',
                 },
                 {
-                  label: 'and output the computed values when the source emits a value',
+                  label:
+                    'and output the computed values when the source emits a value',
                   value: 'https://rxjs.dev/api/operators/scan',
                 },
                 {
@@ -203,11 +210,13 @@ export function getInitialState(): EditorApp.State {
               label: 'I want to wrap its messages with metadata',
               children: [
                 {
-                  label: 'that describes each notification (next, error, or complete)',
+                  label:
+                    'that describes each notification (next, error, or complete)',
                   value: 'https://rxjs.dev/api/operators/materialize',
                 },
                 {
-                  label: 'that includes the time past since the last emitted value',
+                  label:
+                    'that includes the time past since the last emitted value',
                   value: 'https://rxjs.dev/api/operators/timeInterval',
                 },
               ],
@@ -316,7 +325,8 @@ export function getInitialState(): EditorApp.State {
                   ],
                 },
                 {
-                  label: 'based on the emissions of an Observable created on-demand',
+                  label:
+                    'based on the emissions of an Observable created on-demand',
                   children: [
                     {
                       label: 'and emit the group as an array',
@@ -352,40 +362,49 @@ export function getInitialState(): EditorApp.State {
               label: 'I want to start a new Observable for each value',
               children: [
                 {
-                  label: 'and emit the values from all nested Observables in parallel',
+                  label:
+                    'and emit the values from all nested Observables in parallel',
                   children: [
                     {
-                      label: 'where the nested Observable is the same for every value',
+                      label:
+                        'where the nested Observable is the same for every value',
                       value: 'https://rxjs.dev/api/operators/mergeMapTo',
                     },
                     {
-                      label: 'where the nested Observable is calculated for each value',
+                      label:
+                        'where the nested Observable is calculated for each value',
                       value: 'https://rxjs.dev/api/operators/mergeMap',
                     },
                   ],
                 },
                 {
-                  label: 'and emit the values from each nested Observable in order',
+                  label:
+                    'and emit the values from each nested Observable in order',
                   children: [
                     {
-                      label: 'where the nested Observable is the same for every value',
+                      label:
+                        'where the nested Observable is the same for every value',
                       value: 'https://rxjs.dev/api/operators/concatMapTo',
                     },
                     {
-                      label: 'where the nested Observable is calculated for each value',
+                      label:
+                        'where the nested Observable is calculated for each value',
                       value: 'https://rxjs.dev/api/operators/concatMap',
                     },
                   ],
                 },
                 {
-                  label: 'and cancel the previous nested Observable when a new value arrives',
+                  label:
+                    'and cancel the previous nested Observable when a new value arrives',
                   children: [
                     {
-                      label: 'where the nested Observable is the same for every value',
+                      label:
+                        'where the nested Observable is the same for every value',
                       value: 'https://rxjs.dev/api/operators/switchMapTo',
                     },
                     {
-                      label: 'where the nested Observable is calculated for each value',
+                      label:
+                        'where the nested Observable is calculated for each value',
                       value: 'https://rxjs.dev/api/operators/switchMap',
                     },
                   ],
@@ -396,7 +415,8 @@ export function getInitialState(): EditorApp.State {
                   value: 'https://rxjs.dev/api/operators/exhaustMap',
                 },
                 {
-                  label: 'and recursively start a new Observable for each new value',
+                  label:
+                    'and recursively start a new Observable for each new value',
                   value: 'https://rxjs.dev/api/operators/expand',
                 },
               ],
@@ -406,13 +426,15 @@ export function getInitialState(): EditorApp.State {
               value: 'https://rxjs.dev/api/operators/pipe',
             },
             {
-              label: 'I want to share a subscription between multiple subscribers',
+              label:
+                'I want to share a subscription between multiple subscribers',
               children: [
                 {
                   label: 'using a conventional Subject',
                   children: [
                     {
-                      label: 'and start it as soon as the first subscriber arrives',
+                      label:
+                        'and start it as soon as the first subscriber arrives',
                       value: 'https://rxjs.dev/api/operators/share',
                     },
                     {
@@ -449,7 +471,10 @@ export function getInitialState(): EditorApp.State {
                 {
                   label: 'I want to re-subscribe',
                   children: [
-                    { label: 'immediately', value: 'https://rxjs.dev/api/operators/retry' },
+                    {
+                      label: 'immediately',
+                      value: 'https://rxjs.dev/api/operators/retry',
+                    },
                     {
                       label: 'when another Observable emits',
                       value: 'https://rxjs.dev/api/operators/retryWhen',
@@ -464,7 +489,10 @@ export function getInitialState(): EditorApp.State {
                 {
                   label: 'I want to re-subscribe',
                   children: [
-                    { label: 'immediately', value: 'https://rxjs.dev/api/operators/repeat' },
+                    {
+                      label: 'immediately',
+                      value: 'https://rxjs.dev/api/operators/repeat',
+                    },
                     {
                       label: 'when another Observable emits',
                       value: 'https://rxjs.dev/api/operators/repeatWhen',
@@ -478,7 +506,8 @@ export function getInitialState(): EditorApp.State {
               ],
             },
             {
-              label: 'when it completes, errors or unsubscribes, I want to execute a function',
+              label:
+                'when it completes, errors or unsubscribes, I want to execute a function',
               value: 'https://rxjs.dev/api/operators/finalize',
             },
             {
@@ -507,10 +536,12 @@ export function getInitialState(): EditorApp.State {
                   value: 'https://rxjs.dev/api/operators/merge',
                 },
                 {
-                  label: 'I want to output a value computed from values of the source Observables',
+                  label:
+                    'I want to output a value computed from values of the source Observables',
                   children: [
                     {
-                      label: 'using the latest value of each source whenever any source emits',
+                      label:
+                        'using the latest value of each source whenever any source emits',
                       value: 'https://rxjs.dev/api/operators/combineLatest',
                     },
                     {
@@ -529,10 +560,12 @@ export function getInitialState(): EditorApp.State {
           ],
         },
         {
-          label: 'I have some Observables to combine together as one Observable, and',
+          label:
+            'I have some Observables to combine together as one Observable, and',
           children: [
             {
-              label: 'I want to receive values only from the Observable that emits a value first',
+              label:
+                'I want to receive values only from the Observable that emits a value first',
               value: 'https://rxjs.dev/api/operators/race',
             },
             {
@@ -544,10 +577,12 @@ export function getInitialState(): EditorApp.State {
               value: 'https://rxjs.dev/api/operators/merge',
             },
             {
-              label: 'I want to output a value computed from values of the source Observables',
+              label:
+                'I want to output a value computed from values of the source Observables',
               children: [
                 {
-                  label: 'using the latest value of each source whenever any source emits',
+                  label:
+                    'using the latest value of each source whenever any source emits',
                   value: 'https://rxjs.dev/api/operators/combineLatest',
                 },
                 {
@@ -596,7 +631,8 @@ export function getInitialState(): EditorApp.State {
                       value: 'https://rxjs.dev/api/operators/fromEvent',
                     },
                     {
-                      label: 'that uses an API to add and remove event handlers',
+                      label:
+                        'that uses an API to add and remove event handlers',
                       value: 'https://rxjs.dev/api/operators/fromEventPattern',
                     },
                   ],
@@ -625,7 +661,10 @@ export function getInitialState(): EditorApp.State {
                 {
                   label: 'that emits values on a timer',
                   children: [
-                    { label: 'regularly', value: 'https://rxjs.dev/api/operators/interval' },
+                    {
+                      label: 'regularly',
+                      value: 'https://rxjs.dev/api/operators/interval',
+                    },
                     {
                       label: 'with an optional initial delay',
                       value: 'https://rxjs.dev/api/operators/timer',

@@ -1,21 +1,23 @@
 import produce from 'immer';
 import { useCallback, useEffect, useState } from 'preact/hooks';
-import { Branch } from './branch';
-import { getInitialState } from './lib/get-initial-state';
-import { List } from './branch/list';
 import { AppFrame } from './app-frame';
-import { EditorApp } from './types';
+import { Branch } from './branch';
+import { List } from './branch/list';
+import { getInitialState } from './lib/get-initial-state';
 import { writeLocalStorage } from './lib/local-storage';
+import { EditorApp } from './types';
 
 export function App() {
   const [state, saveState] = useState<EditorApp.State>(getInitialState);
   const setState = useCallback<EditorApp.SetState>(
     (mutator) => saveState(produce(state, mutator)),
-    [state]
+    [state],
   );
 
   useEffect(() => {
-    document.documentElement.classList[state.darkModeEnabled ? 'add' : 'remove']('dark');
+    document.documentElement.classList[
+      state.darkModeEnabled ? 'add' : 'remove'
+    ]('dark');
     writeLocalStorage('darkModeEnabled', state.darkModeEnabled);
   }, [state.darkModeEnabled]);
 

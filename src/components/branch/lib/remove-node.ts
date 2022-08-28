@@ -7,7 +7,8 @@ export function removeNode(setState: EditorApp.SetState, path: string) {
     const node: EditorApp.Node = get(doc, path);
     const parentNodePath = path.split('.').slice(0, -2).join('.');
     const parentNode: EditorApp.Node = get(doc, parentNodePath);
-    if (!isBranchNode(parentNode)) throw new Error('parentNode is not a BranchNode');
+    if (!isBranchNode(parentNode))
+      throw new Error('parentNode is not a BranchNode');
     parentNode.children = parentNode.children.filter((child) => child !== node);
   });
 }

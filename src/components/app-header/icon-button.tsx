@@ -10,7 +10,13 @@ export function IconButton({ iconSrc, onClick }: Props) {
       onClick={onClick}
       type="button"
     >
-      <img alt="" className="inline w-5 h-5" src={iconSrc} width={10} height={10} />
+      <img
+        alt=""
+        className="inline w-5 h-5"
+        src={iconSrc}
+        width={10}
+        height={10}
+      />
     </button>
   );
 }

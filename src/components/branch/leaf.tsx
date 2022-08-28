@@ -1,12 +1,17 @@
 import get from 'lodash/get';
 import { JSX } from 'preact';
 import { useState } from 'preact/hooks';
-import { LeafNode, Props } from '../app';
 import { EditorApp } from '../types';
 import { moveNodeDown } from './lib/move-node-down';
 import { moveNodeUp } from './lib/move-node-up';
 import { removeNode } from './lib/remove-node';
 import { RowHeader } from './row-header';
+
+interface Props {
+  path: string;
+  setState: EditorApp.SetState;
+  state: EditorApp.State;
+}
 
 export function Leaf({ path, setState, state }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
