@@ -34,11 +34,11 @@ export function RowHeader({
       </ToolTip>
       <LabelField label={label} path={path} />
       {addChild && (
-        <ToolTip label="Add child">
+        <ToolTip label="Add a next step">
           <AddButton onClick={addChild} />
         </ToolTip>
       )}
-      <ToolTip label="Delete item and its children">
+      <ToolTip label="Delete step and its contents">
         <RemoveButton onClick={onRemoveNode} />
       </ToolTip>
       <ToolTip label="Move up">
