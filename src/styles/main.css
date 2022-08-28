@@ -4,13 +4,58 @@
 
 body {
   @apply p-2;
+
+  @apply bg-white;
+  @apply dark:bg-slate-800;
+  @apply text-slate-900;
+  @apply dark:text-white;
   @apply font-mono;
+}
+
+i {
+  font-style: normal;
 }
 
 .node .node {
   @apply pl-4;
 }
 
+.field {
+  @apply px-1;
+  @apply bg-transparent;
+  @apply rounded;
+  @apply text-sm;
+  @apply focus:outline-none;
+  @apply focus:ring-2;
+
+  @apply focus:ring-black;
+  @apply dark:focus:ring-white;
+}
+
 .btn {
-  @apply inline-flex items-center px-2 py-1 border border-gray-300 shadow-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  @apply inline-flex;
+  @apply items-center;
+  @apply shadow-sm;
+  @apply font-medium;
+
+  @apply dark:text-slate-400;
+  @apply dark:hover:text-white;
+  @apply dark:focus:text-white;
+}
+
+.input {
+  @apply flex-1;
+
+  @apply text-slate-900;
+  @apply dark:text-slate-100;
+}
+
+.textarea {
+  @apply block;
+  @apply w-full;
+  @apply p-2;
+  @apply mb-1;
+
+  @apply border;
+  @apply dark:border-slate-600;
 }

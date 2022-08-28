@@ -12,5 +12,5 @@ export function LabelField({ label, path }: Props) {
     }
   }, []);
 
-  return <input className="flex-1 border px-2" id={path} type="text" value={label} />;
+  return <input className="field input" id={path} type="text" value={label} />;
 }

@@ -27,7 +27,11 @@ export function Leaf({ path, setState, state }: Props): JSX.Element {
         <UpButton onClick={() => moveNodeUp(setState, path)} />
         <DownButton onClick={() => moveNodeDown(setState, path)} />
       </RowHeader>
-      {isOpen && <textarea className="block border w-full p-2 leaf mb-1">{value}</textarea>}
+      {isOpen && (
+        <div contentEditable className="field textarea">
+          {value}
+        </div>
+      )}
     </li>
   );
 }

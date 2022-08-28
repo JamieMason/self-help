@@ -8,7 +8,11 @@ interface Props {
 
 export function Button({ children, className, onClick }: Props): JSX.Element {
   return (
-    <button className={className ? `btn ${className}` : 'btn'} onClick={onClick} type="button">
+    <button
+      className={className ? `field btn ${className}` : 'field btn'}
+      onClick={onClick}
+      type="button"
+    >
       {children}
     </button>
   );
