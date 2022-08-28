@@ -13,10 +13,23 @@ interface Props {
 
 export function AppHeader({ setState, state }: Props) {
   function toggleDarkModeEnabled() {
-    setState((doc) => {
-      doc.darkModeEnabled = !doc.darkModeEnabled;
+    setState((next) => {
+      next.darkModeEnabled = !next.darkModeEnabled;
     });
   }
+
+  function createFile() {
+    setState((next) => {
+      next.doc = {
+        label: '',
+        children: [],
+      };
+    });
+  }
+
+  function importFile() {}
+
+  function exportFile() {}
 
   return (
     <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4">
@@ -24,13 +37,13 @@ export function AppHeader({ setState, state }: Props) {
         <code className="bg-black text-white p-2 rounded-sm">$ self-help</code>
         <span className="ml-2 text-white font-mono">Editor</span>
       </h1>
-      <HeaderButton onClick={() => {}} iconSrc={newDocumentIcon}>
+      <HeaderButton onClick={createFile} iconSrc={newDocumentIcon}>
         Create New
       </HeaderButton>
-      <HeaderButton onClick={() => {}} iconSrc={uploadIcon}>
+      <HeaderButton onClick={importFile} iconSrc={uploadIcon}>
         Import
       </HeaderButton>
-      <HeaderButton onClick={() => {}} iconSrc={downloadIcon}>
+      <HeaderButton onClick={exportFile} iconSrc={downloadIcon}>
         Export
       </HeaderButton>
       <GitHubButton />

@@ -26,8 +26,8 @@ export function Branch({ path, setState, state }: Props): JSX.Element {
 
   function addChild() {
     setIsOpen(true);
-    setState((doc) => {
-      const node: EditorApp.Node = get(doc, path);
+    setState((next) => {
+      const node: EditorApp.Node = get(next, path);
       if (!isBranchNode(node)) throw new Error('node is not a BranchNode');
       node.children.unshift({ label: '', children: [] });
     });
