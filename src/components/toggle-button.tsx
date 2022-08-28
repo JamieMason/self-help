@@ -7,8 +7,8 @@ interface Props {
 
 export function ToggleButton({ toggleIsOpen, isOpen }: Props) {
   return (
-    <Button onClick={toggleIsOpen}>
-      <i className={isOpen ? 'rotate-90' : undefined}>&#10148;</i>
+    <Button className="border-none" onClick={toggleIsOpen}>
+      <i className={`block${isOpen ? ' rotate-90' : ''}`}>&#10148;</i>
     </Button>
   );
 }

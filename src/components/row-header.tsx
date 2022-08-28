@@ -5,5 +5,5 @@ interface Props {
 }
 
 export function RowHeader({ children }: Props) {
-  return <div className="flex items-stretch mb-1 gap-x-1">{children}</div>;
+  return <div className="flex items-center mb-1 gap-x-1">{children}</div>;
 }

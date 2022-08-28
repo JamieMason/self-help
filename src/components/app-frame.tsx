@@ -3,6 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 import downloadIcon from '../img/download.svg';
 import newDocumentIcon from '../img/new-document.svg';
 import uploadIcon from '../img/upload.svg';
+import { GitHubButton } from './github-button';
 import { HeaderButton } from './header-button';
 import { ThemeButton } from './theme-button';
 
@@ -23,8 +24,11 @@ export function AppFrame({ children }: Props) {
 
   return (
     <main>
-      <header className="bg-white shadow dark:bg-gray-800 flex items-center gap-x-2 p-4 dark:text-gray-400">
-        <h1 className="flex-1">Interactive Q&A Guide Editor</h1>
+      <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4">
+        <h1 className="flex-1">
+          <code className="bg-black text-white p-2 rounded-sm">$ self-help</code>
+          <span className="ml-2 text-white font-mono">Editor</span>
+        </h1>
         <HeaderButton onClick={() => {}} iconSrc={newDocumentIcon}>
           Create New
         </HeaderButton>
@@ -34,12 +38,13 @@ export function AppFrame({ children }: Props) {
         <HeaderButton onClick={() => {}} iconSrc={downloadIcon}>
           Export
         </HeaderButton>
+        <GitHubButton />
         <ThemeButton
           darkModeEnabled={darkModeEnabled}
           toggleDarkModeEnabled={toggleDarkModeEnabled}
         />
       </header>
-      <div className="p-2">{children}</div>
+      <div className="p-4">{children}</div>
     </main>
   );
 }

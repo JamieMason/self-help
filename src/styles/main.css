@@ -4,9 +4,9 @@
 
 body {
   @apply bg-white;
-  @apply dark:bg-gray-900;
   @apply text-gray-900;
-  @apply dark:text-white;
+  @apply dark:bg-black;
+  @apply dark:text-slate-300;
 }
 
 i {
@@ -25,18 +25,19 @@ i {
   @apply focus:outline-none;
   @apply focus:ring-2;
 
-  @apply font-mono;
   @apply focus:ring-black;
   @apply dark:focus:ring-white;
 }
 
 .btn {
-  @apply inline-flex;
-  @apply items-center;
-  @apply shadow-sm;
-  @apply font-medium;
+  @apply py-0;
+  @apply px-1;
 
-  @apply dark:text-slate-400;
+  @apply border;
+  @apply bg-transparent;
+  @apply text-slate-600;
+  @apply dark:border-slate-800;
+  @apply dark:text-slate-500;
   @apply dark:hover:text-white;
   @apply dark:focus:text-white;
 }
@@ -44,8 +45,8 @@ i {
 .input {
   @apply flex-1;
 
-  @apply text-slate-900;
-  @apply dark:text-slate-100;
+  /* @apply text-slate-900; */
+  /* @apply dark:text-slate-100; */
 }
 
 .textarea {
