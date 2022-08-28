@@ -44,9 +44,6 @@ i {
 
 .input {
   @apply flex-1;
-
-  /* @apply text-slate-900; */
-  /* @apply dark:text-slate-100; */
 }
 
 .textarea {
@@ -83,6 +80,6 @@ i {
   @apply left-0;
 }
 
-.tooltip:focus-within > .tooltip__bubble {
+.tooltip:hover > .tooltip__bubble {
   @apply block;
 }
