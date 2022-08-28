@@ -10,15 +10,41 @@ import { EditorApp } from './types';
 
 export function App() {
   const [state, saveState] = useState<EditorApp.State>(getInitialState);
+  const [undoStates, setUndoStates] = useState<EditorApp.State[]>([state]);
+
   const setState = useCallback<EditorApp.SetState>(
-    (mutator) => saveState(produce(state, mutator)),
-    [state],
+    (mutator) => {
+      const nextState = produce(state, mutator);
+      saveState(nextState);
+      setUndoStates(undoStates.concat(nextState));
+    },
+    [undoStates, state],
   );
 
   useEffect(() => {
-    document.documentElement.classList[
-      state.darkModeEnabled ? 'add' : 'remove'
-    ]('dark');
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+    };
+
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z') {
+        undo();
+      }
+    }
+
+    function undo() {
+      if (undoStates.length === 0) return;
+      const [prevState] = undoStates.slice(-2);
+      const nextUndoStates = undoStates.slice(0, -1);
+      saveState(prevState);
+      setUndoStates(nextUndoStates);
+    }
+  }, [undoStates, state]);
+
+  useEffect(() => {
+    const method = state.darkModeEnabled ? 'add' : 'remove';
+    document.documentElement.classList[method]('dark');
     writeLocalStorage('darkModeEnabled', state.darkModeEnabled);
   }, [state.darkModeEnabled]);
 
