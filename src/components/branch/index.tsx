@@ -43,6 +43,7 @@ export function Branch({ path, setState, state }: Props): JSX.Element {
         onMoveNodeUp={() => moveNodeUp(setState, path)}
         onRemoveNode={() => removeNode(setState, path)}
         path={path}
+        setState={setState}
         toggleIsOpen={toggleIsOpen}
       />
       {isOpen && isNonEmptyArray(children) && (

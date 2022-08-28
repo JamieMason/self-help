@@ -11,7 +11,7 @@ export function Source({ setState, state }: Props): JSX.Element {
 
   function onChange(e: any) {
     try {
-      const doc = JSON.parse(e.currentTarget.innerHTML);
+      const doc = JSON.parse(e.currentTarget.innerText);
       setHasError(false);
       setState((next) => {
         next.doc = doc;
@@ -33,13 +33,4 @@ export function Source({ setState, state }: Props): JSX.Element {
       {JSON.stringify(state.doc, null, 2)}
     </pre>
   );
-}
-
-function isValid(value: string): boolean {
-  try {
-    const doc = JSON.parse(value);
-    return true;
-  } catch (err) {
-    return false;
-  }
 }

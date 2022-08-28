@@ -1,3 +1,4 @@
+import { EditorApp } from '../../types';
 import { AddButton } from './add-button';
 import { DownButton } from './down-button';
 import { LabelField } from './label-field';
@@ -14,6 +15,7 @@ interface Props {
   onMoveNodeUp: () => void;
   onRemoveNode: () => void;
   path: string;
+  setState: EditorApp.SetState;
   toggleIsOpen: () => void;
 }
 
@@ -25,6 +27,7 @@ export function RowHeader({
   onMoveNodeUp,
   onRemoveNode,
   path,
+  setState,
   toggleIsOpen,
 }: Props) {
   return (
@@ -32,7 +35,7 @@ export function RowHeader({
       <ToolTip label={isOpen ? 'collapse' : 'expand'} position="right">
         <ToggleButton toggleIsOpen={toggleIsOpen} isOpen={isOpen} />
       </ToolTip>
-      <LabelField label={label} path={path} />
+      <LabelField label={label} path={path} setState={setState} />
       {addChild && (
         <ToolTip label="Add a next step">
           <AddButton onClick={addChild} />

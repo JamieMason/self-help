@@ -19,6 +19,17 @@ export function Leaf({ path, setState, state }: Props): JSX.Element {
   const leaf: EditorApp.LeafNode = get(state, path);
   const { value, label } = leaf;
 
+  function onValueChange(e: any) {
+    setState((next) => {
+      get(next, path).value = e.currentTarget.value;
+    });
+  }
+
+  function onInput(e: any) {
+    const el = e.currentTarget;
+    el.parentNode.dataset.replicatedValue = el.value;
+  }
+
   return (
     <li>
       <RowHeader
@@ -29,11 +40,18 @@ export function Leaf({ path, setState, state }: Props): JSX.Element {
         onMoveNodeUp={() => moveNodeUp(setState, path)}
         onRemoveNode={() => removeNode(setState, path)}
         path={path}
+        setState={setState}
         toggleIsOpen={toggleIsOpen}
       />
       {isOpen && (
-        <div contentEditable className="field textarea">
-          {value}
+        <div className="grow-wrap">
+          <textarea
+            className="field textarea"
+            onBlur={onValueChange}
+            onInput={onInput}
+          >
+            {value}
+          </textarea>
         </div>
       )}
     </li>

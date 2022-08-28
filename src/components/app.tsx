@@ -50,9 +50,11 @@ export function App() {
 
   return (
     <AppFrame setState={setState} state={state}>
-      <List className={state.currentRoute === 'editor' ? '' : 'sr-only'}>
-        <Branch path="doc" setState={setState} state={state} />
-      </List>
+      {state.currentRoute === 'editor' && (
+        <List>
+          <Branch path="doc" setState={setState} state={state} />
+        </List>
+      )}
       {state.currentRoute === 'source' && (
         <Source setState={setState} state={state} />
       )}
