@@ -11,9 +11,10 @@ export namespace EditorApp {
     value: string;
   }
 
-  export type Mutator = (node: Node) => void;
+  export type Mutator = (node: State) => void;
   export type SetState = (mutator: Mutator) => void;
   export interface State {
+    darkModeEnabled: boolean;
     doc: Node;
   }
 }

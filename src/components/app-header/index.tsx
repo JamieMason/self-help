@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'preact/hooks';
 import downloadIcon from '../../img/download.svg';
 import newDocumentIcon from '../../img/new-document.svg';
 import uploadIcon from '../../img/upload.svg';
+import { EditorApp } from '../types';
 import { GitHubButton } from './github-button';
 import { HeaderButton } from './header-button';
 import { ThemeButton } from './theme-button';
 
-export function AppHeader() {
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+interface Props {
+  setState: EditorApp.SetState;
+  state: EditorApp.State;
+}
 
-  useEffect(() => {
-    document.documentElement.classList[darkModeEnabled ? 'add' : 'remove']('dark');
-  }, [darkModeEnabled]);
-
+export function AppHeader({ setState, state }: Props) {
   function toggleDarkModeEnabled() {
-    return setDarkModeEnabled(!darkModeEnabled);
+    setState((doc) => {
+      doc.darkModeEnabled = !doc.darkModeEnabled;
+    });
   }
 
   return (
@@ -34,7 +35,7 @@ export function AppHeader() {
       </HeaderButton>
       <GitHubButton />
       <ThemeButton
-        darkModeEnabled={darkModeEnabled}
+        darkModeEnabled={state.darkModeEnabled}
         toggleDarkModeEnabled={toggleDarkModeEnabled}
       />
     </header>

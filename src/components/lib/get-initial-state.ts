@@ -1,5 +1,9 @@
-export function getInitialState() {
+import { EditorApp } from '../types';
+import { readLocalStorage } from './local-storage';
+
+export function getInitialState(): EditorApp.State {
   return {
+    darkModeEnabled: readLocalStorage<boolean>('darkModeEnabled') || false,
     doc: {
       label: 'How can we help?',
       children: [
