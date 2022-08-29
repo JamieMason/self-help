@@ -40,23 +40,23 @@ function RowHeaderComponent({
   toggleIsOpen,
 }: Props) {
   return (
-    <div className="flex items-center mb-1 gap-x-1">
+    <div className="flex items-center mb-1">
       <ToolTip label={isOpen ? 'collapse' : 'expand'} position="right">
         <ToggleButton toggleIsOpen={toggleIsOpen} isOpen={isOpen} />
       </ToolTip>
       <LabelField label={label} path={path} setState={setState} />
       {addChild && (
-        <ToolTip label="Add a next step">
+        <ToolTip className="ml-1" label="Add a next step">
           <AddButton onClick={addChild} />
         </ToolTip>
       )}
-      <ToolTip label="Delete step and its contents">
+      <ToolTip className="ml-1" label="Delete step and its contents">
         <RemoveButton onClick={onRemoveNode} />
       </ToolTip>
-      <ToolTip label="Move up">
+      <ToolTip className="ml-1" label="Move up">
         <UpButton onClick={onMoveNodeUp} />
       </ToolTip>
-      <ToolTip label="Move down">
+      <ToolTip className="ml-1" label="Move down">
         <DownButton onClick={onMoveNodeDown} />
       </ToolTip>
     </div>

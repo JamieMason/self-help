@@ -10,9 +10,9 @@ interface Props {
 
 export function AppFrame({ children, setState, state }: Props) {
   return (
-    <main>
+    <main className="flex flex-col h-screen">
       <AppHeader setState={setState} state={state} />
-      <div className="p-4">{children}</div>
+      <div className="p-4 flex-1 overflow-auto relative">{children}</div>
     </main>
   );
 }

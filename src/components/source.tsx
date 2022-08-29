@@ -11,7 +11,7 @@ export function Source({ setState, state }: Props): JSX.Element {
 
   function onChange(e: any) {
     try {
-      const doc = JSON.parse(e.currentTarget.innerText);
+      const doc = JSON.parse(e.currentTarget.value);
       setHasError(false);
       setState((next) => {
         next.doc = doc;
@@ -22,15 +22,13 @@ export function Source({ setState, state }: Props): JSX.Element {
   }
 
   return (
-    <pre
-      className={`text-sm p-2${
+    <textarea
+      className={`field textarea absolute inset-0${
         hasError ? ' border border-red-600 text-red-600' : ''
       }`}
-      contentEditable
       onBlur={onChange}
       onFocus={() => setHasError(false)}
-    >
-      {JSON.stringify(state.doc, null, 2)}
-    </pre>
+      value={JSON.stringify(state.doc, null, 2)}
+    />
   );
 }

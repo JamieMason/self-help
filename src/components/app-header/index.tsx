@@ -27,7 +27,7 @@ function AppHeaderComponent({ setState, state }: Props) {
   }
 
   return (
-    <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4">
+    <header className="shadow bg-slate-900 flex items-center gap-x-2 p-4 relative z-50">
       <h1 className="bg-black text-white p-2 rounded-sm font-mono">
         $ self-help
       </h1>

@@ -50,7 +50,7 @@ function LeafComponent({ node, path, setState }: Props): JSX.Element {
       {isOpen && (
         <div className="grow-wrap">
           <textarea
-            className="field textarea"
+            className="field textarea ml-6"
             onChange={onValueChange}
             onInput={onInput}
             value={value}

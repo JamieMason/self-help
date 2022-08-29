@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import chevronRightIcon from '../../img/chevron-right.svg';
 import { Fragment } from 'preact';
 import { getNewDocument } from '../lib/get-new-document';
 import { getRxJsExample } from '../lib/get-rx-js-example';
@@ -34,7 +34,11 @@ export function DocumentMenu({ setState }: Props) {
       <Menu as="div" className="-ml-px relative block">
         <Menu.Button className="relative inline-flex items-center px-2 py-2 pl-4 rounded-md border border-gray-900 bg-slate-800 text-sm font-medium text-white focus:z-10">
           Open Document
-          <ChevronDownIcon className="ml-2 h-5 w-5" aria-hidden="true" />
+          <img
+            src={chevronRightIcon}
+            className="ml-2 h-5 w-5 rotate-90"
+            aria-hidden="true"
+          />
         </Menu.Button>
         <Transition
           as={Fragment}
@@ -53,7 +57,7 @@ export function DocumentMenu({ setState }: Props) {
                     <button
                       type="button"
                       onClick={item.onClick}
-                      className="w-full block px-4 py-2 text-sm text-left"
+                      className="w-full block px-4 py-2 text-sm text-left text-white"
                     >
                       {item.name}
                     </button>

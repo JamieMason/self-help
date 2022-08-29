@@ -18,13 +18,13 @@ i {
 }
 
 .field {
-  @apply p-1;
+  @apply px-1 py-0;
   @apply bg-transparent;
   @apply rounded;
-  @apply text-sm;
+  @apply text-sm !important;
   @apply focus:outline-none;
   @apply focus:ring-2;
-
+  @apply font-mono !important;
   @apply focus:ring-black;
   @apply dark:focus:ring-white;
 }
@@ -42,19 +42,21 @@ i {
   @apply dark:focus:text-white;
 }
 
+.btn-toggle {
+  @apply p-0;
+}
+
 .input {
   @apply flex-1;
 }
 
 .textarea {
   @apply block;
-  @apply w-full;
   @apply p-2;
   @apply mb-1;
 
   @apply border;
-  @apply dark:border-slate-600;
-  @apply font-mono !important;
+  @apply dark:border-slate-800;
 }
 
 .tooltip {
@@ -65,7 +67,7 @@ i {
   @apply hidden;
   @apply absolute;
   @apply rounded-sm;
-  @apply -top-7;
+  @apply -top-1;
   @apply p-1;
   @apply bg-green-600;
   @apply text-white;
@@ -74,11 +76,11 @@ i {
 }
 
 .tooltip--left > .tooltip__bubble {
-  @apply right-0;
+  @apply right-6;
 }
 
 .tooltip--right > .tooltip__bubble {
-  @apply left-0;
+  @apply left-6;
 }
 
 .tooltip:hover > .tooltip__bubble {
@@ -100,9 +102,10 @@ i {
 }
 .grow-wrap > textarea,
 .grow-wrap::after {
-  /* Identical styling required!! */
-  border: 1px solid black;
-  padding: 0.5rem;
+  /* Identical styling to original textarea is needed */
+  @apply border;
+  @apply dark:border-slate-800;
+  @apply p-2;
   font: inherit;
   grid-area: 1 / 1 / 2 / 2;
 }
