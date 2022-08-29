@@ -47,11 +47,10 @@ export function Leaf({ path, setState, state }: Props): JSX.Element {
         <div className="grow-wrap">
           <textarea
             className="field textarea"
-            onBlur={onValueChange}
+            onChange={onValueChange}
             onInput={onInput}
-          >
-            {value}
-          </textarea>
+            value={value}
+          />
         </div>
       )}
     </li>

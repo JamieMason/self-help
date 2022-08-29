@@ -54,6 +54,7 @@ i {
 
   @apply border;
   @apply dark:border-slate-600;
+  @apply font-mono !important;
 }
 
 .tooltip {
