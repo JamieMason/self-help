@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import codeIcon from '../../img/code.svg';
 import editIcon from '../../img/edit.svg';
 import { EditorApp } from '../types';
@@ -11,7 +12,14 @@ interface Props {
   state: EditorApp.State;
 }
 
-export function AppHeader({ setState, state }: Props) {
+export const AppHeader = memo(AppHeaderComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.state.currentRoute === nextProps.state.currentRoute &&
+    prevProps.state.darkModeEnabled === nextProps.state.darkModeEnabled
+  );
+});
+
+function AppHeaderComponent({ setState, state }: Props) {
   function toggleDarkModeEnabled() {
     setState((next) => {
       next.darkModeEnabled = !next.darkModeEnabled;
@@ -49,7 +57,7 @@ export function AppHeader({ setState, state }: Props) {
           Source
         </HeaderButton>
       </div>
-      <DocumentMenu setState={setState} state={state} />
+      <DocumentMenu setState={setState} />
       <GitHubButton />
       <ThemeButton
         darkModeEnabled={state.darkModeEnabled}

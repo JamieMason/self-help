@@ -7,10 +7,9 @@ import { EditorApp } from '../types';
 
 interface Props {
   setState: EditorApp.SetState;
-  state: EditorApp.State;
 }
 
-export function DocumentMenu({ setState, state }: Props) {
+export function DocumentMenu({ setState }: Props) {
   const items = [
     {
       name: 'Empty Document',

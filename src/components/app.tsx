@@ -52,7 +52,11 @@ export function App() {
     <AppFrame setState={setState} state={state}>
       {state.currentRoute === 'editor' && (
         <List>
-          <Branch path="doc" setState={setState} state={state} />
+          <Branch
+            node={state.doc as EditorApp.BranchNode}
+            path="doc"
+            setState={setState}
+          />
         </List>
       )}
       {state.currentRoute === 'source' && (

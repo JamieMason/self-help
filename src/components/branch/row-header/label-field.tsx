@@ -1,6 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { EditorApp } from '../../types';
 import get from 'lodash/get';
+import { memo } from 'preact/compat';
 
 interface Props {
   label: string;
@@ -8,7 +9,13 @@ interface Props {
   setState: EditorApp.SetState;
 }
 
-export function LabelField({ label, path, setState }: Props) {
+export const LabelField = memo(LabelFieldComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.label === nextProps.label && prevProps.path === nextProps.path
+  );
+});
+
+function LabelFieldComponent({ label, path, setState }: Props) {
   useEffect(() => {
     if (label === '') {
       document.getElementById(path)?.focus();

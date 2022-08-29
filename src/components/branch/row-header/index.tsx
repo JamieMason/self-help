@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import { EditorApp } from '../../types';
 import { AddButton } from './add-button';
 import { DownButton } from './down-button';
@@ -19,7 +20,15 @@ interface Props {
   toggleIsOpen: () => void;
 }
 
-export function RowHeader({
+export const RowHeader = memo(RowHeaderComponent, (prevProps, nextProps) => {
+  return (
+    prevProps.label === nextProps.label &&
+    prevProps.isOpen === nextProps.isOpen &&
+    prevProps.path === nextProps.path
+  );
+});
+
+function RowHeaderComponent({
   addChild,
   isOpen,
   label,

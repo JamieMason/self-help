@@ -1,4 +1,5 @@
 import { ComponentChildren } from 'preact';
+import { memo } from 'preact/compat';
 
 interface Props {
   children: ComponentChildren;
@@ -6,7 +7,11 @@ interface Props {
   position?: 'left' | 'right';
 }
 
-export function ToolTip({ children, label, position = 'left' }: Props) {
+export const ToolTip = memo(ToolTipComponent, (prevProps, nextProps) => {
+  return prevProps.label === nextProps.label;
+});
+
+function ToolTipComponent({ children, label, position = 'left' }: Props) {
   return (
     <div className={`tooltip tooltip--${position}`}>
       <i className="tooltip__bubble">{label}</i>

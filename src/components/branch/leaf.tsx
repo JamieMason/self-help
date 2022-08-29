@@ -1,3 +1,4 @@
+import { memo } from 'preact/compat';
 import get from 'lodash/get';
 import { JSX } from 'preact';
 import { useState } from 'preact/hooks';
@@ -8,16 +9,19 @@ import { removeNode } from './lib/remove-node';
 import { RowHeader } from './row-header';
 
 interface Props {
+  node: EditorApp.LeafNode;
   path: string;
   setState: EditorApp.SetState;
-  state: EditorApp.State;
 }
 
-export function Leaf({ path, setState, state }: Props): JSX.Element {
+export const Leaf = memo(LeafComponent, (prevProps, nextProps) => {
+  return prevProps.node === nextProps.node;
+});
+
+function LeafComponent({ node, path, setState }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(true);
   const toggleIsOpen = () => setIsOpen(!isOpen);
-  const leaf: EditorApp.LeafNode = get(state, path);
-  const { value, label } = leaf;
+  const { value, label } = node;
 
   function onValueChange(e: any) {
     setState((next) => {

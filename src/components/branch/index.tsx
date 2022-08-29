@@ -1,5 +1,6 @@
 import { isNonEmptyArray } from 'expect-more/dist/is-non-empty-array';
 import get from 'lodash/get';
+import { memo } from 'preact/compat';
 import { JSX } from 'preact';
 import { useState } from 'preact/hooks';
 import { EditorApp } from '../types';
@@ -13,23 +14,26 @@ import { List } from './list';
 import { RowHeader } from './row-header';
 
 interface Props {
+  node: EditorApp.BranchNode;
   path: string;
   setState: EditorApp.SetState;
-  state: EditorApp.State;
 }
 
-export function Branch({ path, setState, state }: Props): JSX.Element {
+export const Branch = memo(BranchComponent, (prevProps, nextProps) => {
+  return prevProps.node === nextProps.node;
+});
+
+function BranchComponent({ node, path, setState }: Props): JSX.Element {
   const [isOpen, setIsOpen] = useState(true);
   const toggleIsOpen = () => setIsOpen(!isOpen);
-  const branch: EditorApp.BranchNode = get(state, path);
-  const { children, label } = branch;
+  const { children, label } = node;
 
   function addChild() {
     setIsOpen(true);
     setState((next) => {
-      const node: EditorApp.Node = get(next, path);
-      if (!isBranchNode(node)) return;
-      node.children.unshift({ label: '', children: [] });
+      const nextNode: EditorApp.Node = get(next, path);
+      if (!isBranchNode(nextNode)) return;
+      nextNode.children.unshift({ label: '', children: [] });
     });
   }
 
@@ -46,22 +50,22 @@ export function Branch({ path, setState, state }: Props): JSX.Element {
         setState={setState}
         toggleIsOpen={toggleIsOpen}
       />
-      {isOpen && isNonEmptyArray(children) && (
-        <List>
-          {children.map((node, i) =>
-            isBranchNode(node) ? (
+      {isNonEmptyArray(children) && (
+        <List className={!isOpen ? 'hidden' : undefined}>
+          {children.map((child, i) =>
+            isBranchNode(child) ? (
               <Branch
-                key={node.label}
+                key={child.label}
+                node={child}
                 path={`${path}.children.${i}`}
                 setState={setState}
-                state={state}
               />
-            ) : isLeafNode(node) ? (
+            ) : isLeafNode(child) ? (
               <Leaf
-                key={node.label}
+                key={child.label}
+                node={child}
                 path={`${path}.children.${i}`}
                 setState={setState}
-                state={state}
               />
             ) : null,
           )}
