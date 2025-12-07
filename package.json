@@ -12,22 +12,22 @@
   "contributors": [],
   "dependencies": {
     "@clack/prompts": "0.11.0",
-    "marked": "17.0.1",
+    "marked": "15.0.12",
     "marked-terminal": "7.3.0",
     "sade": "1.8.1",
     "tinyrainbow": "3.0.3",
     "xstate": "5.24.0"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^10.0.2",
+    "@release-it/conventional-changelog": "10.0.2",
     "@types/marked": "5.0.2",
     "@types/marked-terminal": "6.1.1",
     "@types/node": "24.10.1",
     "@types/prettier": "2.7.3",
     "@vitest/coverage-v8": "4.0.15",
-    "auto-changelog": "^2.5.0",
+    "auto-changelog": "2.5.0",
     "prettier": "3.7.4",
-    "release-it": "^19.0.6",
+    "release-it": "19.0.6",
     "typescript": "5.9.3",
     "vitest": "4.0.15"
   },

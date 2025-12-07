@@ -12,11 +12,11 @@ importers:
         specifier: 0.11.0
         version: 0.11.0
       marked:
-        specifier: 17.0.1
-        version: 17.0.1
+        specifier: 15.0.12
+        version: 15.0.12
       marked-terminal:
         specifier: 7.3.0
-        version: 7.3.0(marked@17.0.1)
+        version: 7.3.0(marked@15.0.12)
       sade:
         specifier: 1.8.1
         version: 1.8.1
@@ -28,7 +28,7 @@ importers:
         version: 5.24.0
     devDependencies:
       '@release-it/conventional-changelog':
-        specifier: ^10.0.2
+        specifier: 10.0.2
         version: 10.0.2(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.2.1)(release-it@19.0.6(@types/node@24.10.1)(magicast@0.3.5))
       '@types/marked':
         specifier: 5.0.2
@@ -46,13 +46,13 @@ importers:
         specifier: 4.0.15
         version: 4.0.15(vitest@4.0.15(@types/node@24.10.1)(jiti@2.6.1))
       auto-changelog:
-        specifier: ^2.5.0
+        specifier: 2.5.0
         version: 2.5.0
       prettier:
         specifier: 3.7.4
         version: 3.7.4
       release-it:
-        specifier: ^19.0.6
+        specifier: 19.0.6
         version: 19.0.6(@types/node@24.10.1)(magicast@0.3.5)
       typescript:
         specifier: 5.9.3
@@ -1196,9 +1196,9 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
-  marked@17.0.1:
-    resolution: {integrity: sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg==}
-    engines: {node: '>= 20'}
+  marked@15.0.12:
+    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
+    engines: {node: '>= 18'}
     hasBin: true
 
   meow@13.2.0:
@@ -2796,20 +2796,20 @@ snapshots:
     dependencies:
       semver: 7.7.3
 
-  marked-terminal@7.3.0(marked@17.0.1):
+  marked-terminal@7.3.0(marked@15.0.12):
     dependencies:
       ansi-escapes: 7.2.0
       ansi-regex: 6.2.2
       chalk: 5.6.2
       cli-highlight: 2.1.11
       cli-table3: 0.6.5
-      marked: 17.0.1
+      marked: 15.0.12
       node-emoji: 2.2.0
       supports-hyperlinks: 3.2.0
 
   marked@11.2.0: {}
 
-  marked@17.0.1: {}
+  marked@15.0.12: {}
 
   meow@13.2.0: {}
 
