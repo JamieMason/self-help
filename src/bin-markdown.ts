@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { isString } from 'lodash';
+import { isString } from './lib/utils';
 import { run } from './markdown';
 
 program

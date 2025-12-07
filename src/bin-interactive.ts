@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { isString } from 'lodash';
 import { run } from './interactive';
+import { isString } from './lib/utils';
 
 program
   .description('navigate a self-help document from the command line')

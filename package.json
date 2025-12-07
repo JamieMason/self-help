@@ -15,7 +15,6 @@
     "commander": "14.0.2",
     "fs-extra": "11.3.2",
     "inquirer": "13.0.2",
-    "lodash": "4.17.21",
     "marked": "17.0.1",
     "marked-terminal": "7.3.0",
     "xstate": "5.24.0"
@@ -25,7 +24,6 @@
     "@types/fs-extra": "11.0.4",
     "@types/inquirer": "9.0.9",
     "@types/jest": "30.0.0",
-    "@types/lodash": "4.17.21",
     "@types/marked": "5.0.2",
     "@types/marked-terminal": "6.1.1",
     "@types/node": "24.10.1",

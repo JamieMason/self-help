@@ -28,7 +28,6 @@ npm test
 - [commander](https://ghub.io/commander): the complete solution for node.js command-line programs
 - [fs-extra](https://ghub.io/fs-extra): fs-extra contains methods that aren&#39;t included in the vanilla Node.js fs package. Such as mkdir -p, cp -r, and rm -rf.
 - [inquirer](https://ghub.io/inquirer): A collection of common interactive command line user interfaces.
-- [lodash](https://ghub.io/lodash): Lodash modular utilities.
 - [marked](https://ghub.io/marked): A markdown parser built for speed
 - [marked-terminal](https://ghub.io/marked-terminal): A custom render for marked to output to the Terminal
 - [xstate](https://ghub.io/xstate): Finite State Machines and Statecharts for the Modern Web.
@@ -39,7 +38,6 @@ npm test
 - [@types/fs-extra](https://ghub.io/@types/fs-extra): TypeScript definitions for fs-extra
 - [@types/inquirer](https://ghub.io/@types/inquirer): TypeScript definitions for inquirer
 - [@types/jest](https://ghub.io/@types/jest): TypeScript definitions for Jest
-- [@types/lodash](https://ghub.io/@types/lodash): TypeScript definitions for Lo-Dash
 - [@types/marked](https://ghub.io/@types/marked): TypeScript definitions for Marked
 - [@types/marked-terminal](https://ghub.io/@types/marked-terminal): TypeScript definitions for marked-terminal
 - [@types/node](https://ghub.io/@types/node): TypeScript definitions for Node.js
