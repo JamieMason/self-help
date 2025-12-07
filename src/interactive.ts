@@ -86,9 +86,9 @@ export const start = async (interpreter: TreeActor): Promise<void> => {
     }
   };
 
-  const renderValue = async (leaf: Leaf) => {
+  const renderValue = (leaf: Leaf) => {
     console.log('');
-    console.log(await renderToCli(leaf.value));
+    console.log(renderToCli(leaf.value));
   };
 
   interpreter.subscribe((snapshot) => {

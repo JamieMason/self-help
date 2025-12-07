@@ -1,19 +1,10 @@
 import { marked } from 'marked';
 import { markedTerminal } from 'marked-terminal';
-import * as prettier from 'prettier';
 import type { Node } from '../index.js';
 import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 marked.use(markedTerminal() as any);
-
-const prettierrc: prettier.Options = {
-  parser: 'markdown',
-  printWidth: 120,
-  proseWrap: 'always',
-  tabWidth: 2,
-  useTabs: false,
-};
 
 const getNestedMarkdown = (children: Node[]): Promise<string> =>
   Promise.all(children.map(toMarkdownFile)).then((x) => x.join(''));
@@ -38,7 +29,6 @@ export const toMarkdownFile = async (node: Node): Promise<string> => {
   return '';
 };
 
-export const renderToCli = async (markdown: string): Promise<string> => {
-  const formatted = await prettier.format(markdown, prettierrc);
-  return marked.parse(formatted) as string;
+export const renderToCli = (markdown: string): string => {
+  return marked.parse(markdown) as string;
 };
