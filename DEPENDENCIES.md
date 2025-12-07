@@ -42,9 +42,7 @@ npm test
 - [expect-more-jest](https://ghub.io/expect-more-jest): Write Beautiful Specs with Custom Matchers for Jest
 - [jest](https://ghub.io/jest): Delightful JavaScript Testing.
 - [prettier](https://ghub.io/prettier): Prettier is an opinionated code formatter
-- [rimraf](https://ghub.io/rimraf): A deep deletion module for node (like `rm -rf`)
 - [ts-jest](https://ghub.io/ts-jest): A preprocessor with source maps support to help use TypeScript with Jest
-- [tslint](https://ghub.io/tslint): An extensible static analysis linter for the TypeScript language
 - [typescript](https://ghub.io/typescript): TypeScript is a language for application scale JavaScript development
 
 ## License
