@@ -4,6 +4,7 @@ import { createRequire } from 'module';
 import sade from 'sade';
 import { run as runInteractive } from './interactive.js';
 import { isString } from './lib/utils.js';
+import { run as runLint } from './lint.js';
 import { run as runMarkdown } from './markdown.js';
 
 const require = createRequire(import.meta.url);
@@ -35,6 +36,19 @@ prog
       runMarkdown({ sourcePath: opts.source });
     } else {
       prog.help('markdown');
+      process.exit(1);
+    }
+  });
+
+prog
+  .command('lint')
+  .describe('validate a markdown source directory')
+  .option('-s, --source', 'path to markdown source directory')
+  .action((opts: { source?: string }) => {
+    if (opts.source && isString(opts.source)) {
+      runLint({ sourcePath: opts.source });
+    } else {
+      prog.help('lint');
       process.exit(1);
     }
   });

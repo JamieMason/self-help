@@ -15,9 +15,27 @@ export interface Leaf {
 
 /**
  * @description
+ * An **AsyncLeaf** is like a **Leaf**, but its value is loaded lazily via a
+ * function. This enables large documents to be read on-demand rather than
+ * embedded in the help document. The function can return the value
+ * synchronously or as a Promise.
+ *
+ * @example
+ * {
+ *   label: 'Installation Guide',
+ *   value: () => fs.readFileSync('./installation.md', 'utf8')
+ * }
+ */
+export interface AsyncLeaf {
+  label: string;
+  value: () => string | Promise<string>;
+}
+
+/**
+ * @description
  * A **Branch** presents multiple options to choose from in the form of its
  * children **Array**. Children can be a combination of other **Branch**,
- * **AsyncBranch** or **Leaf** Nodes.
+ * **AsyncBranch**, **Leaf**, or **AsyncLeaf** Nodes.
  *
  * @example
  * http://j.mp/rxjs-self-help-example
@@ -50,7 +68,7 @@ export interface AsyncBranch {
  * @example
  * http://j.mp/rxjs-self-help-example
  */
-export type Node = Leaf | Branch | AsyncBranch;
+export type Node = Leaf | AsyncLeaf | Branch | AsyncBranch;
 
 /**
  * @description

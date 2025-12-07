@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isAsyncBranch, isBranch, isChildren, isLeaf, isNode } from './nodes.js';
+import { isAsyncBranch, isAsyncLeaf, isBranch, isChildren, isLeaf, isNode } from './nodes.js';
 
 describe('nodes', () => {
   describe('isLeaf', () => {
@@ -14,6 +14,14 @@ describe('nodes', () => {
         children: [{ label: 'Child', value: 'value' }],
       };
       expect(isLeaf(branch)).toBe(false);
+    });
+
+    it('should return false for an async leaf node', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => 'async value',
+      };
+      expect(isLeaf(asyncLeaf)).toBe(false);
     });
 
     it('should return false for null', () => {
@@ -33,6 +41,61 @@ describe('nodes', () => {
     });
   });
 
+  describe('isAsyncLeaf', () => {
+    it('should return true for a valid async leaf node with sync function', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => 'sync value',
+      };
+      expect(isAsyncLeaf(asyncLeaf)).toBe(true);
+    });
+
+    it('should return true for a valid async leaf node with async function', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => Promise.resolve('async value'),
+      };
+      expect(isAsyncLeaf(asyncLeaf)).toBe(true);
+    });
+
+    it('should return false for a regular leaf node', () => {
+      const leaf = { label: 'Test Leaf', value: 'test value' };
+      expect(isAsyncLeaf(leaf)).toBe(false);
+    });
+
+    it('should return false for a branch node', () => {
+      const branch = {
+        label: 'Test Branch',
+        children: [{ label: 'Child', value: 'value' }],
+      };
+      expect(isAsyncLeaf(branch)).toBe(false);
+    });
+
+    it('should return false for an async branch node', () => {
+      const asyncBranch = {
+        label: 'Async Branch',
+        children: () => Promise.resolve([{ label: 'Child', value: 'value' }]),
+      };
+      expect(isAsyncLeaf(asyncBranch)).toBe(false);
+    });
+
+    it('should return false for null', () => {
+      expect(isAsyncLeaf(null)).toBe(false);
+    });
+
+    it('should return false for undefined', () => {
+      expect(isAsyncLeaf(undefined)).toBe(false);
+    });
+
+    it('should return false for an object without a label', () => {
+      expect(isAsyncLeaf({ value: () => 'test' })).toBe(false);
+    });
+
+    it('should return false for an object without a value', () => {
+      expect(isAsyncLeaf({ label: 'test' })).toBe(false);
+    });
+  });
+
   describe('isBranch', () => {
     it('should return true for a valid branch node', () => {
       const branch = {
@@ -45,6 +108,14 @@ describe('nodes', () => {
     it('should return false for a leaf node', () => {
       const leaf = { label: 'Test Leaf', value: 'test value' };
       expect(isBranch(leaf)).toBe(false);
+    });
+
+    it('should return false for an async leaf node', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => 'async value',
+      };
+      expect(isBranch(asyncLeaf)).toBe(false);
     });
 
     it('should return false for an async branch', () => {
@@ -87,6 +158,14 @@ describe('nodes', () => {
       expect(isAsyncBranch(leaf)).toBe(false);
     });
 
+    it('should return false for an async leaf node', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => 'async value',
+      };
+      expect(isAsyncBranch(asyncLeaf)).toBe(false);
+    });
+
     it('should return false for null', () => {
       expect(isAsyncBranch(null)).toBe(false);
     });
@@ -100,6 +179,14 @@ describe('nodes', () => {
           label: 'Branch',
           children: [{ label: 'Nested', value: 'nested value' }],
         },
+      ];
+      expect(isChildren(children)).toBe(true);
+    });
+
+    it('should return true for an array containing async leaf nodes', () => {
+      const children = [
+        { label: 'Leaf', value: 'value' },
+        { label: 'Async Leaf', value: () => 'async value' },
       ];
       expect(isChildren(children)).toBe(true);
     });
@@ -123,6 +210,22 @@ describe('nodes', () => {
     it('should return true for a leaf node', () => {
       const leaf = { label: 'Test Leaf', value: 'test value' };
       expect(isNode(leaf)).toBe(true);
+    });
+
+    it('should return true for an async leaf node', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => 'async value',
+      };
+      expect(isNode(asyncLeaf)).toBe(true);
+    });
+
+    it('should return true for an async leaf node with promise', () => {
+      const asyncLeaf = {
+        label: 'Async Leaf',
+        value: () => Promise.resolve('async value'),
+      };
+      expect(isNode(asyncLeaf)).toBe(true);
     });
 
     it('should return true for a branch node', () => {

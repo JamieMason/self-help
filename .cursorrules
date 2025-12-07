@@ -1,23 +1,16 @@
 # Self-Help Development Rules
 
-TypeScript CLI tool for interactive Q&A guides and decision trees.
+TypeScript CLI for interactive Q&A guides. Markdown folders (recommended) or JS modules.
 
-## Critical Reading
-
-Before any work, read:
-
-1. `.notes/context.md` - Core concepts
-2. `.notes/index.md` - Navigation hub
-
-## When to Ask vs Proceed
+## MUST READ: When to Ask vs Proceed
 
 ### Ask when
 
-- User intent unclear or multiple valid approaches exist
+- User intent unclear or multiple valid approaches
 - Breaking changes or core architecture modifications
-- Creating ANY new files/modules not explicitly requested (including docs, notes, examples)
-- Large refactors (ALWAYS ask strategy questions first)
-- Architectural decisions: state machine design, node types, etc.
+- Creating ANY new files not explicitly requested
+- Large refactors (ask strategy questions FIRST)
+- Architectural decisions: state machine, node types
 
 ### Proceed when
 
@@ -26,45 +19,7 @@ Before any work, read:
 - Non-breaking changes
 - Adding tests, fixing obvious bugs
 
-### Large refactor rule
-
-Before implementing, identify ALL decision points, document trade-offs, ask user to choose strategy. WAIT for answers.
-
-## Core Architecture (NEVER BREAK)
-
-### Node Types
-
-Three node types form the decision tree:
-
-- **Leaf** - Terminal node with answer content (`label` + `value`)
-- **Branch** - Node with synchronous children (`label` + `children: Node[]`)
-- **AsyncBranch** - Node with lazy-loaded children (`label` + `children: () => Promise<Node[]>`)
-
-### State Machine Pattern
-
-XState drives tree navigation:
-
-- `visitNode` → Determine node type
-- `resolveBranch` → Load async children (loading/success/failure states)
-- `renderBranch` → Display options, await selection
-- `renderLeaf` → Display leaf, await finalisation
-- `renderValue` → Display answer content (final state)
-
-### Key Invariants
-
-1. **State transitions via events only:** SELECT_CHILD, SELECT_ROOT, FINALISE, RETRY
-2. **Commands share common pipeline:** Load source → Get document → Process tree
-3. **Type guards determine node type:** `isLeaf()`, `isBranch()`, `isAsyncBranch()`
-4. **Node validation is strict:** All nodes must have label, proper children structure
-
-### Wrong Patterns
-
-❌ Direct state mutation | ✅ Send events to actor
-❌ Type assertions without guards | ✅ Use type guard functions
-❌ Inline type checks | ✅ Use `isLeaf()`, `isBranch()`, `isAsyncBranch()`
-❌ Manual promise handling in machine | ✅ Use `fromPromise` actor
-
-## Communication Style
+## MUST READ: Communication Style
 
 **Signal over noise** - applies to responses, plans, docs, comments:
 
@@ -104,36 +59,7 @@ XState drives tree navigation:
 - **Test naming:** `describe` blocks for features, `it` for specific behaviours
 - **Factories:** Create helper functions for test data (e.g., `createLeaf`, `createBranch`)
 
-### File Organisation
-
-- Entry points: `src/bin*.ts`
-- Public API: `src/index.ts`
-- Commands: `src/interactive.ts`, `src/markdown.ts`
-- State machine: `src/machine/tree/`
-- Utilities: `src/lib/`
-- Test fixtures: `src/fixtures/`
-
-### Import Style
-
-```typescript
-import { type Actor, assign, createActor, createMachine } from 'xstate';
-import type { Branch, Leaf, Node } from './index.js';
-import { isLeaf, isBranch } from './machine/tree/nodes.js';
-```
-
-### Documentation (Public Functions)
-
-```typescript
-/**
- * Brief description.
- *
- * @example
- * functionName('input') // => output
- */
-export const functionName = (param: string): Result => {};
-```
-
-## AI-Specific Rules
+## MUST READ: AI-Specific Rules
 
 ### Pre-Implementation Checklist
 
@@ -158,8 +84,8 @@ STOP if you think:
 - "I'll write a summary file"
 - "Let me document this implementation"
 
-Self-check: "Could this be done differently?" → Ask user
-Self-check: "Am I creating a file user didn't request?" → STOP
+Self-check: "Could this be done differently?" → Ask user Self-check: "Am I creating a file user
+didn't request?" → STOP
 
 ### Before Making Claims
 
@@ -174,31 +100,7 @@ Self-check: "Am I creating a file user didn't request?" → STOP
 3. Match that pattern exactly
 4. Never invent APIs - only use what exists
 
-### Scope Boundaries (Off-Limits)
-
-- Don't modify: State machine structure, node type definitions
-- Don't refactor: Working commands unless requested
-- Don't change: Public API types (breaking)
-- Don't add: Dependencies without discussion
-- Don't remove: Tests
-- Don't create: Files unless explicitly requested (NO docs, notes, examples, summaries)
-
-## Design Rationale
-
-**Why XState?** Explicit state transitions, predictable behaviour, built-in async handling, visual debugging
-
-**Why type guards?** Runtime safety, TypeScript narrowing, single source of truth for type checks
-
-**Why async children as functions?** Lazy loading, composable documents, external data sources
-
-## Troubleshooting
-
-### When stuck
-
-1. Check `.notes/index.md` for right doc
-2. Find similar code with grep
-3. Trace state machine transitions
-4. Check test examples in `src/machine/tree/index.spec.ts`
+## MUST READ: Troubleshooting
 
 ### Scientific debugging
 
@@ -215,8 +117,40 @@ Before committing:
 - ✅ Tests pass (`pnpm test`)
 - ✅ Zero TypeScript errors (`pnpm build`)
 - ✅ Code formatted (`pnpm format`)
-- ✅ No TODOs
 - ✅ Patterns followed
-- ✅ Only necessary changes
 
-External docs: Use Context7 MCP for XState, Vitest, etc.
+## MUST READ: Dev Wiki
+
+The .wiki is the **primary knowledge base** for this project. It's an interactive Q&A guide (built with this very tool) covering concepts, patterns, debugging, testing, and adding features.
+
+### How to use it
+
+Open [.wiki](./.wiki/README.md) and navigate to the relevant section you are looking for.
+
+### When to consult
+
+- Before starting any task (unfamiliar territory)
+- When stuck or debugging
+- When unsure of patterns or conventions
+- Before asking the user for guidance that might already be documented
+
+### Improving the wiki (CRITICAL)
+
+After completing a task or hitting a problem, **always ask yourself:**
+
+- Did I learn something not in the wiki?
+- Did I waste time on something the wiki could have warned me about?
+- Was the wiki guidance unclear, outdated, or incomplete?
+- Did I discover a better pattern or approach?
+
+If yes to ANY: **propose wiki improvements to the user.** The wiki improves through use — every
+hard-won lesson should be captured for future sessions. This is how institutional knowledge
+accumulates.
+
+### What belongs in the wiki
+
+- Step-by-step guides for common tasks
+- Gotchas and pitfalls discovered during development
+- Architectural decisions and their rationale
+- Debugging strategies that worked
+- Testing patterns and examples

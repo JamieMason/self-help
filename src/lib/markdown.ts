@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import { markedTerminal } from 'marked-terminal';
 import type { Node } from '../index.js';
-import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes.js';
+import { isAsyncBranch, isAsyncLeaf, isBranch, isLeaf } from '../machine/tree/nodes.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 marked.use(markedTerminal() as any);
@@ -23,6 +23,9 @@ export const toMarkdownFile = async (node: Node): Promise<string> => {
     const children = node.children;
     const contents = await getNestedMarkdown(children);
     return li(details(node.label, ul(contents)));
+  } else if (isAsyncLeaf(node)) {
+    const value = await node.value();
+    return li(details(node.label, ul(`\n\n${value}\n\n`)));
   } else if (isLeaf(node)) {
     return li(details(node.label, ul(`\n\n${node.value}\n\n`)));
   }
