@@ -1,4 +1,4 @@
-import { select } from '@inquirer/prompts';
+import { isCancel, select } from '@clack/prompts';
 import { resolve } from 'path';
 import c from 'tinyrainbow';
 import type { WriteStream } from 'tty';
@@ -9,11 +9,6 @@ import { tryPanicAsync } from './lib/try-panic.js';
 import { createTreeInterpreter, type TreeActor, type TreeContext } from './machine/tree/index.js';
 import { isBranch, isLeaf } from './machine/tree/nodes.js';
 
-interface Choice {
-  name: string;
-  value: number;
-}
-
 interface HelpDocumentSource {
   getHelpDocument: () => Node | Promise<Node>;
 }
@@ -21,9 +16,9 @@ interface HelpDocumentSource {
 const stdout = process.stdout as WriteStream;
 const LOADING_MESSAGE = '! Loading...';
 
-const getChoices = (node: Branch): Choice[] =>
+const getOptions = (node: Branch) =>
   node.children.map((child: Node, i: number) => ({
-    name: child.label,
+    label: child.label,
     value: i,
   }));
 
@@ -68,10 +63,18 @@ export const start = async (interpreter: TreeActor): Promise<void> => {
     promptPending = true;
 
     try {
-      const childIndex = await select<number>({
+      const result = await select({
         message: branch.label,
-        choices: getChoices(branch),
+        options: getOptions(branch),
       });
+
+      if (isCancel(result)) {
+        promptPending = false;
+        process.exit(0);
+      }
+
+      const childIndex = result;
+
       // Reset promptPending BEFORE sending the event to avoid race condition
       // where the state transition triggers a new subscription callback
       // while we're still inside this try block

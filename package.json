@@ -11,7 +11,7 @@
   "bugs": "https://github.com/JamieMason/self-help/issues",
   "contributors": [],
   "dependencies": {
-    "inquirer": "13.0.2",
+    "@clack/prompts": "0.11.0",
     "marked": "17.0.1",
     "marked-terminal": "7.3.0",
     "sade": "1.8.1",
@@ -19,7 +19,6 @@
     "xstate": "5.24.0"
   },
   "devDependencies": {
-    "@types/inquirer": "9.0.9",
     "@types/marked": "5.0.2",
     "@types/marked-terminal": "6.1.1",
     "@types/node": "24.10.1",

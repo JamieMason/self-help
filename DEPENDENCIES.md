@@ -26,14 +26,13 @@ npm test
 
 - [sade](https://github.com/lukeed/sade): Smooth (CLI) Operator - a small but powerful tool for building CLI applications
 - [tinyrainbow](https://github.com/tinylibs/tinyrainbow): A small library to print colourful messages
-- [inquirer](https://ghub.io/inquirer): A collection of common interactive command line user interfaces.
+- [@clack/prompts](https://github.com/bombshell-dev/clack): Beautiful, ready-to-use CLI prompt components
 - [marked](https://ghub.io/marked): A markdown parser built for speed
 - [marked-terminal](https://ghub.io/marked-terminal): A custom render for marked to output to the Terminal
 - [xstate](https://ghub.io/xstate): Finite State Machines and Statecharts for the Modern Web.
 
 ## Dev Dependencies
 
-- [@types/inquirer](https://ghub.io/@types/inquirer): TypeScript definitions for inquirer
 - [@types/marked](https://ghub.io/@types/marked): TypeScript definitions for Marked
 - [@types/marked-terminal](https://ghub.io/@types/marked-terminal): TypeScript definitions for marked-terminal
 - [@types/node](https://ghub.io/@types/node): TypeScript definitions for Node.js
