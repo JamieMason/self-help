@@ -1,7 +1,7 @@
 {
   "name": "self-help",
   "description": "Interactive Q&A Guides for Web and the Command Line",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bin": {
     "self-help": "./dist/bin.js",
