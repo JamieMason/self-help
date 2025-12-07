@@ -1,0 +1,222 @@
+# Self-Help Development Rules
+
+TypeScript CLI tool for interactive Q&A guides and decision trees.
+
+## Critical Reading
+
+Before any work, read:
+
+1. `.notes/context.md` - Core concepts
+2. `.notes/index.md` - Navigation hub
+
+## When to Ask vs Proceed
+
+### Ask when
+
+- User intent unclear or multiple valid approaches exist
+- Breaking changes or core architecture modifications
+- Creating ANY new files/modules not explicitly requested (including docs, notes, examples)
+- Large refactors (ALWAYS ask strategy questions first)
+- Architectural decisions: state machine design, node types, etc.
+
+### Proceed when
+
+- Pattern clearly exists in codebase
+- Following established convention
+- Non-breaking changes
+- Adding tests, fixing obvious bugs
+
+### Large refactor rule
+
+Before implementing, identify ALL decision points, document trade-offs, ask user to choose strategy. WAIT for answers.
+
+## Core Architecture (NEVER BREAK)
+
+### Node Types
+
+Three node types form the decision tree:
+
+- **Leaf** - Terminal node with answer content (`label` + `value`)
+- **Branch** - Node with synchronous children (`label` + `children: Node[]`)
+- **AsyncBranch** - Node with lazy-loaded children (`label` + `children: () => Promise<Node[]>`)
+
+### State Machine Pattern
+
+XState drives tree navigation:
+
+- `visitNode` → Determine node type
+- `resolveBranch` → Load async children (loading/success/failure states)
+- `renderBranch` → Display options, await selection
+- `renderLeaf` → Display leaf, await finalisation
+- `renderValue` → Display answer content (final state)
+
+### Key Invariants
+
+1. **State transitions via events only:** SELECT_CHILD, SELECT_ROOT, FINALISE, RETRY
+2. **Commands share common pipeline:** Load source → Get document → Process tree
+3. **Type guards determine node type:** `isLeaf()`, `isBranch()`, `isAsyncBranch()`
+4. **Node validation is strict:** All nodes must have label, proper children structure
+
+### Wrong Patterns
+
+❌ Direct state mutation | ✅ Send events to actor
+❌ Type assertions without guards | ✅ Use type guard functions
+❌ Inline type checks | ✅ Use `isLeaf()`, `isBranch()`, `isAsyncBranch()`
+❌ Manual promise handling in machine | ✅ Use `fromPromise` actor
+
+## Communication Style
+
+**Signal over noise** - applies to responses, plans, docs, comments:
+
+- Extremely concise, fragments over sentences
+- Action-oriented: what to DO
+- Ground in facts: cite code/docs
+- Remove: "basically", "essentially", "in order to"
+- Use British English: "behaviour" not "behavior", "organised" not "organized", etc.
+
+## Code Style
+
+- **Functional style preferred:** pipelines over loops
+- **Descriptive names:** clarity over brevity in code
+- **Grouped imports:** External deps first, then internal
+- **Named exports:** Prefer named over default exports
+- **Type guards:** Use for runtime type narrowing
+- **Template literals:** Use for string interpolation
+
+### TDD Workflow (Mandatory)
+
+1. Write failing test, verify it fails
+2. Implement minimal code to pass
+3. Check TypeScript/ESLint
+4. Refactor
+
+### Code Quality
+
+- Functions <50 lines, modules 100-300 lines
+- Zero TypeScript errors
+- No comments by default (only for complex logic)
+- Scientific debugging: form hypotheses, test before fixing
+
+### Testing
+
+- **Test files:** Sibling `.spec.ts` files (e.g., `index.ts` → `index.spec.ts`)
+- **Framework:** Vitest with coverage
+- **Test naming:** `describe` blocks for features, `it` for specific behaviours
+- **Factories:** Create helper functions for test data (e.g., `createLeaf`, `createBranch`)
+
+### File Organisation
+
+- Entry points: `src/bin*.ts`
+- Public API: `src/index.ts`
+- Commands: `src/interactive.ts`, `src/markdown.ts`
+- State machine: `src/machine/tree/`
+- Utilities: `src/lib/`
+- Test fixtures: `src/fixtures/`
+
+### Import Style
+
+```typescript
+import { type Actor, assign, createActor, createMachine } from 'xstate';
+import type { Branch, Leaf, Node } from './index.js';
+import { isLeaf, isBranch } from './machine/tree/nodes.js';
+```
+
+### Documentation (Public Functions)
+
+```typescript
+/**
+ * Brief description.
+ *
+ * @example
+ * functionName('input') // => output
+ */
+export const functionName = (param: string): Result => {};
+```
+
+## AI-Specific Rules
+
+### Pre-Implementation Checklist
+
+Before large changes:
+
+- Have I identified ALL decision points?
+- Have I listed trade-offs for each approach?
+- Have I asked user which strategy to use?
+- Am I making ANY architectural assumptions?
+- Am I creating files user didn't request?
+
+If "no" to ANY, STOP and ask.
+
+### Recognising Assumption Mode
+
+STOP if you think:
+
+- "I'll use approach X because it seems reasonable"
+- "I can refactor later if wrong"
+- "This is a minor detail"
+- "I'll create helpful documentation"
+- "I'll write a summary file"
+- "Let me document this implementation"
+
+Self-check: "Could this be done differently?" → Ask user
+Self-check: "Am I creating a file user didn't request?" → STOP
+
+### Before Making Claims
+
+1. Search codebase to verify
+2. Read actual implementation
+3. Base advice on verified facts
+
+### Before Writing Tests
+
+1. Read 2-3 existing tests in same file
+2. Identify the pattern (factories, assertion style)
+3. Match that pattern exactly
+4. Never invent APIs - only use what exists
+
+### Scope Boundaries (Off-Limits)
+
+- Don't modify: State machine structure, node type definitions
+- Don't refactor: Working commands unless requested
+- Don't change: Public API types (breaking)
+- Don't add: Dependencies without discussion
+- Don't remove: Tests
+- Don't create: Files unless explicitly requested (NO docs, notes, examples, summaries)
+
+## Design Rationale
+
+**Why XState?** Explicit state transitions, predictable behaviour, built-in async handling, visual debugging
+
+**Why type guards?** Runtime safety, TypeScript narrowing, single source of truth for type checks
+
+**Why async children as functions?** Lazy loading, composable documents, external data sources
+
+## Troubleshooting
+
+### When stuck
+
+1. Check `.notes/index.md` for right doc
+2. Find similar code with grep
+3. Trace state machine transitions
+4. Check test examples in `src/machine/tree/index.spec.ts`
+
+### Scientific debugging
+
+1. Observe error carefully
+2. Hypothesise root cause
+3. Experiment with targeted changes
+4. Validate hypothesis
+5. Fix and verify with tests
+
+## Quick Reference
+
+Before committing:
+
+- ✅ Tests pass (`pnpm test`)
+- ✅ Zero TypeScript errors (`pnpm build`)
+- ✅ Code formatted (`pnpm format`)
+- ✅ No TODOs
+- ✅ Patterns followed
+- ✅ Only necessary changes
+
+External docs: Use Context7 MCP for XState, Vitest, etc.
