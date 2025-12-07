@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-import { program } from 'commander';
+import sade from 'sade';
 import { run } from './interactive';
 import { isString } from './lib/utils';
 
-program
-  .description('navigate a self-help document from the command line')
-  .option('-s, --source <path>', 'path to self-help document')
-  .parse(process.argv);
+const prog = sade('self-help-interactive', true)
+  .describe('navigate a self-help document from the command line')
+  .option('-s, --source', 'path to self-help document')
+  .action((opts: { source?: string }) => {
+    if (opts.source && isString(opts.source)) {
+      run({ sourcePath: opts.source });
+    } else {
+      prog.help();
+      process.exit(1);
+    }
+  });
 
-const options = program.opts<{ source?: string }>();
-
-if (options.source && isString(options.source)) {
-  run({ sourcePath: options.source });
-} else {
-  program.outputHelp();
-  process.exit(1);
-}
+prog.parse(process.argv);

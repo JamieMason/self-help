@@ -4,23 +4,22 @@
   "version": "0.3.2",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bin": {
-    "self-help-interactive": "./dist/bin-interactive.js",
-    "self-help-markdown": "./dist/bin-markdown.js",
-    "self-help": "./dist/bin.js"
+    "self-help-interactive": "./dist/src/bin-interactive.js",
+    "self-help-markdown": "./dist/src/bin-markdown.js",
+    "self-help": "./dist/src/bin.js"
   },
   "bugs": "https://github.com/JamieMason/self-help/issues",
   "contributors": [],
   "dependencies": {
-    "commander": "14.0.2",
     "fs-extra": "11.3.2",
     "inquirer": "13.0.2",
     "marked": "17.0.1",
     "marked-terminal": "7.3.0",
+    "sade": "1.8.1",
     "tinyrainbow": "3.0.3",
     "xstate": "5.24.0"
   },
   "devDependencies": {
-    "@types/commander": "2.12.2",
     "@types/fs-extra": "11.0.4",
     "@types/inquirer": "9.0.9",
     "@types/jest": "30.0.0",
@@ -45,7 +44,7 @@
   "homepage": "https://github.com/JamieMason/self-help#readme",
   "keywords": [],
   "license": "MIT",
-  "main": "./dist/index.js",
+  "main": "./dist/src/index.js",
   "repository": "JamieMason/self-help",
   "scripts": {
     "build": "tsc --project .",
