@@ -1,6 +1,6 @@
 import { select } from '@inquirer/prompts';
-import chalk from 'chalk';
 import { resolve } from 'path';
+import c from 'tinyrainbow';
 import type { WriteStream } from 'tty';
 import type { Branch, Leaf, Node } from '.';
 import { renderToCli } from './lib/markdown';
@@ -41,12 +41,12 @@ export const start = async (interpreter: TreeActor): Promise<void> => {
   let promptPending = false;
 
   const renderChoice = (currentNode: Node) => {
-    console.log(chalk.green('✔'), chalk.bold(currentNode.label));
+    console.log(c.green('✔'), c.bold(currentNode.label));
   };
 
   const showLoadingStatus = (currentNode: Node) => {
     renderChoice(currentNode);
-    stdout.write(chalk.yellow(LOADING_MESSAGE));
+    stdout.write(c.yellow(LOADING_MESSAGE));
   };
 
   const hideLoadingStatus = () => {

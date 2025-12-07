@@ -1,10 +1,10 @@
-import chalk from 'chalk';
+import c from 'tinyrainbow';
 
 export const tryPanic = (fn: (...args: unknown[]) => unknown, message: string) => {
   try {
     return fn();
   } catch (_) {
-    console.error(chalk.red(message));
+    console.error(c.red(message));
     process.exit(1);
   }
 };

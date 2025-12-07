@@ -24,7 +24,7 @@ npm test
 
 ## Dependencies
 
-- [chalk](https://ghub.io/chalk): Terminal string styling done right
+- [tinyrainbow](https://github.com/tinylibs/tinyrainbow): A small library to print colourful messages
 - [commander](https://ghub.io/commander): the complete solution for node.js command-line programs
 - [fs-extra](https://ghub.io/fs-extra): fs-extra contains methods that aren&#39;t included in the vanilla Node.js fs package. Such as mkdir -p, cp -r, and rm -rf.
 - [inquirer](https://ghub.io/inquirer): A collection of common interactive command line user interfaces.
