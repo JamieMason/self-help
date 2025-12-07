@@ -20,16 +20,14 @@
   },
   "devDependencies": {
     "@types/inquirer": "9.0.9",
-    "@types/jest": "30.0.0",
     "@types/marked": "5.0.2",
     "@types/marked-terminal": "6.1.1",
     "@types/node": "24.10.1",
     "@types/prettier": "2.7.3",
-    "expect-more-jest": "5.5.0",
-    "jest": "30.2.0",
+    "@vitest/coverage-v8": "3.2.4",
     "prettier": "3.7.4",
-    "ts-jest": "29.4.6",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -47,6 +45,6 @@
     "format": "prettier --write './src/**/*.ts'",
     "prebuild": "rm -rf dist ./test/dist",
     "prepack": "npm run build",
-    "test": "jest"
+    "test": "vitest run"
   }
 }

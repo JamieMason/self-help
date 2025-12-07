@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { createActor, waitFor } from 'xstate';
 import type { Branch, Leaf, Node } from '../..';
 import { createTreeInterpreter, createTreeMachine } from './index';

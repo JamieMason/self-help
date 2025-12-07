@@ -34,16 +34,14 @@ npm test
 ## Dev Dependencies
 
 - [@types/inquirer](https://ghub.io/@types/inquirer): TypeScript definitions for inquirer
-- [@types/jest](https://ghub.io/@types/jest): TypeScript definitions for Jest
 - [@types/marked](https://ghub.io/@types/marked): TypeScript definitions for Marked
 - [@types/marked-terminal](https://ghub.io/@types/marked-terminal): TypeScript definitions for marked-terminal
 - [@types/node](https://ghub.io/@types/node): TypeScript definitions for Node.js
 - [@types/prettier](https://ghub.io/@types/prettier): TypeScript definitions for prettier
-- [expect-more-jest](https://ghub.io/expect-more-jest): Write Beautiful Specs with Custom Matchers for Jest
-- [jest](https://ghub.io/jest): Delightful JavaScript Testing.
+- [@vitest/coverage-v8](https://github.com/vitest-dev/vitest): Coverage provider for Vitest
 - [prettier](https://ghub.io/prettier): Prettier is an opinionated code formatter
-- [ts-jest](https://ghub.io/ts-jest): A preprocessor with source maps support to help use TypeScript with Jest
 - [typescript](https://ghub.io/typescript): TypeScript is a language for application scale JavaScript development
+- [vitest](https://github.com/vitest-dev/vitest): Blazing fast unit test framework
 
 ## License
 
