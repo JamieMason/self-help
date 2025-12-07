@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="85" viewBox="0 0 100 85" fill="none">
+  <!-- Connecting lines from question to branches (drawn first, behind nodes) -->
+  <path d="M 43 25 L 36 32" stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" />
+  <path d="M 57 25 L 64 32" stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Connecting lines to leaf nodes (drawn first, behind nodes) -->
+  <path d="M 22 48 L 15 55" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 38 48 L 45 55" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 62 48 L 55 55" stroke="#c4b5fd" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Main question node at top -->
+  <circle cx="50" cy="18" r="11" fill="#6366f1" />
+  <text x="50" y="23" text-anchor="middle" fill="white" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">?</text>
+
+  <!-- Middle branch nodes -->
+  <circle cx="30" cy="40" r="11" fill="#8b5cf6" />
+  <text x="30" y="45" text-anchor="middle" fill="#6d28d9" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">?</text>
+  <circle cx="70" cy="40" r="11" fill="#8b5cf6" />
+  <text x="70" y="45" text-anchor="middle" fill="#6d28d9" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">?</text>
+
+  <!-- Leaf/answer nodes (rounded rectangles representing answers/documents) -->
+  <rect x="4" y="55" width="22" height="22" rx="4" fill="#10b981" />
+  <rect x="39" y="55" width="22" height="22" rx="4" fill="#10b981" />
+
+  <!-- Checkmarks in answer nodes -->
+  <path d="M 10 66 L 14 71 L 21 62" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  <path d="M 45 66 L 49 71 L 56 62" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+</svg>
