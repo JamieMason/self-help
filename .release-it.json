@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/release-it/schema/release-it.json",
+  "git": {
+    "changelog": "pnpm exec auto-changelog -- --stdout --commit-limit false --unreleased --breaking-pattern 'BREAKING CHANGE:' --template https://raw.githubusercontent.com/release-it/release-it/main/templates/changelog-compact.hbs",
+    "commitMessage": "chore(release): ${version}",
+    "push": false,
+    "requireBranch": "main",
+    "tag": true
+  },
+  "github": {
+    "release": true,
+    "releaseName": "${version}"
+  },
+  "npm": {
+    "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits"
+      },
+      "strictSemver": true
+    }
+  }
+}
