@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 
+import { createRequire } from 'module';
 import sade from 'sade';
-import { run as runInteractive } from './interactive';
-import { isString } from './lib/utils';
-import { run as runMarkdown } from './markdown';
+import { run as runInteractive } from './interactive.js';
+import { isString } from './lib/utils.js';
+import { run as runMarkdown } from './markdown.js';
 
-const version = require('../package.json').version;
+const require = createRequire(import.meta.url);
+const { version } = require('../package.json');
 
 const prog = sade('self-help');
 

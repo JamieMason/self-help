@@ -2,11 +2,12 @@ import { select } from '@inquirer/prompts';
 import { resolve } from 'path';
 import c from 'tinyrainbow';
 import type { WriteStream } from 'tty';
-import type { Branch, Leaf, Node } from '.';
-import { renderToCli } from './lib/markdown';
-import { tryPanic } from './lib/try-panic';
-import { createTreeInterpreter, type TreeActor, type TreeContext } from './machine/tree';
-import { isBranch, isLeaf } from './machine/tree/nodes';
+import { pathToFileURL } from 'url';
+import type { Branch, Leaf, Node } from './index.js';
+import { renderToCli } from './lib/markdown.js';
+import { tryPanicAsync } from './lib/try-panic.js';
+import { createTreeInterpreter, type TreeActor, type TreeContext } from './machine/tree/index.js';
+import { isBranch, isLeaf } from './machine/tree/nodes.js';
 
 interface Choice {
   name: string;
@@ -28,10 +29,11 @@ const getChoices = (node: Branch): Choice[] =>
 
 export const run = async ({ sourcePath }: { sourcePath: string }) => {
   const dataPath = resolve(process.cwd(), sourcePath);
-  const REQUIRE_ERROR = `Failed to require('${dataPath}');`;
-  const source = tryPanic(() => require(dataPath), REQUIRE_ERROR) as HelpDocumentSource;
+  const fileUrl = pathToFileURL(dataPath).href;
+  const IMPORT_ERROR = `Failed to import('${dataPath}');`;
+  const source = (await tryPanicAsync(() => import(fileUrl), IMPORT_ERROR)) as HelpDocumentSource;
   const GET_DOCUMENT_ERROR = `Failed to call getHelpDocument() from ${dataPath}`;
-  const tree = (await tryPanic(() => source.getHelpDocument(), GET_DOCUMENT_ERROR)) as Node;
+  const tree = (await tryPanicAsync(() => source.getHelpDocument(), GET_DOCUMENT_ERROR)) as Node;
   const interpreter = createTreeInterpreter(tree);
   start(interpreter);
 };

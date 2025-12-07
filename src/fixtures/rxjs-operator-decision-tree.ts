@@ -1,4 +1,4 @@
-import type { Branch } from '..';
+import type { Branch } from '../index.js';
 
 export const getHelpDocument = (): Branch => ({
   label: 'How can we help?',

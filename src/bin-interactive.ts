@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import sade from 'sade';
-import { run } from './interactive';
-import { isString } from './lib/utils';
+import { run } from './interactive.js';
+import { isString } from './lib/utils.js';
 
 const prog = sade('self-help-interactive', true)
   .describe('navigate a self-help document from the command line')

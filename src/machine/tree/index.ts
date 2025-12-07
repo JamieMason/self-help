@@ -1,5 +1,5 @@
 import { type Actor, assign, createActor, createMachine, fromPromise, type Snapshot } from 'xstate';
-import type { Branch, Node } from '../..';
+import type { Branch, Node } from '../../index.js';
 
 export interface TreeContext {
   currentNode: Node;
@@ -36,7 +36,7 @@ export type TreeEvent =
   | SelectRootEvent
   | SetChildrenEvent;
 
-import { isAsyncBranch, isBranch, isChildren, isLeaf, isNode } from './nodes';
+import { isAsyncBranch, isBranch, isChildren, isLeaf, isNode } from './nodes.js';
 
 const isSelectChildEvent = (event: TreeEvent): event is SelectChildEvent =>
   event.type === 'SELECT_CHILD';

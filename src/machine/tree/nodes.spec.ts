@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isAsyncBranch, isBranch, isChildren, isLeaf, isNode } from './nodes';
+import { isAsyncBranch, isBranch, isChildren, isLeaf, isNode } from './nodes.js';
 
 describe('nodes', () => {
   describe('isLeaf', () => {

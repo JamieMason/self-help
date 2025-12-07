@@ -1,8 +1,8 @@
 import { marked } from 'marked';
 import { markedTerminal } from 'marked-terminal';
 import * as prettier from 'prettier';
-import type { Node } from '..';
-import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes';
+import type { Node } from '../index.js';
+import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes.js';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 marked.use(markedTerminal() as any);

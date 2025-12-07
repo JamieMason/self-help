@@ -1,5 +1,5 @@
-import type { AsyncBranch, Branch, Leaf, Node } from '../../';
-import { get, isArray, isFunction, isString } from '../../lib/utils';
+import type { AsyncBranch, Branch, Leaf, Node } from '../../index.js';
+import { get, isArray, isFunction, isString } from '../../lib/utils.js';
 
 const children = (value: unknown) => get(value, 'children');
 const label = (value: unknown) => get(value, 'label');

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import sade from 'sade';
-import { isString } from './lib/utils';
-import { run } from './markdown';
+import { isString } from './lib/utils.js';
+import { run } from './markdown.js';
 
 const prog = sade('self-help-markdown', true)
   .describe('generate markdown from a self-help document')

@@ -4,9 +4,9 @@
   "version": "0.3.2",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bin": {
-    "self-help": "./dist/src/bin.js",
-    "self-help-interactive": "./dist/src/bin-interactive.js",
-    "self-help-markdown": "./dist/src/bin-markdown.js"
+    "self-help": "./dist/bin.js",
+    "self-help-interactive": "./dist/bin-interactive.js",
+    "self-help-markdown": "./dist/bin-markdown.js"
   },
   "bugs": "https://github.com/JamieMason/self-help/issues",
   "contributors": [],
@@ -30,7 +30,13 @@
     "vitest": "3.2.4"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=18.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "files": [
     "dist"
@@ -38,7 +44,6 @@
   "homepage": "https://github.com/JamieMason/self-help#readme",
   "keywords": [],
   "license": "MIT",
-  "main": "./dist/src/index.js",
   "repository": "JamieMason/self-help",
   "scripts": {
     "build": "tsc --project .",
@@ -46,5 +51,6 @@
     "prebuild": "rm -rf dist ./test/dist",
     "prepack": "npm run build",
     "test": "vitest run"
-  }
+  },
+  "type": "module"
 }

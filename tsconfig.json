@@ -3,15 +3,15 @@
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2017", "es6"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "lib": ["ES2022"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2017"
+    "target": "ES2022"
   },
-  "include": ["./package.json", "./src/**/*.ts"],
+  "include": ["./src/**/*.ts"],
   "exclude": ["./src/**/*.spec.ts"]
 }
