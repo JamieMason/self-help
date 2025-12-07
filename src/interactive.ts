@@ -1,46 +1,47 @@
-import * as chalk from 'chalk';
-import { prompt } from 'inquirer';
+import { select } from '@inquirer/prompts';
+import chalk from 'chalk';
 import { resolve } from 'path';
-import { WriteStream } from 'tty';
-import { Branch, Leaf, Node } from '.';
+import type { WriteStream } from 'tty';
+import type { Branch, Leaf, Node } from '.';
 import { renderToCli } from './lib/markdown';
 import { tryPanic } from './lib/try-panic';
-import { createTreeInterpreter, TreeInterpreter } from './machine/tree';
+import { createTreeInterpreter, type TreeActor, type TreeContext } from './machine/tree';
 import { isBranch, isLeaf } from './machine/tree/nodes';
 
-interface Answer {
+interface Choice {
   name: string;
-  short: string;
   value: number;
 }
 
-interface ChosenAnswer {
-  childIndex: number;
+interface HelpDocumentSource {
+  getHelpDocument: () => Node | Promise<Node>;
 }
 
 const stdout = process.stdout as WriteStream;
 const LOADING_MESSAGE = '! Loading...';
 
-const getChoices = (node: Branch): Answer[] =>
-  node.children.map((child: Node, i) => ({
+const getChoices = (node: Branch): Choice[] =>
+  node.children.map((child: Node, i: number) => ({
     name: child.label,
-    short: ' ',
     value: i,
   }));
 
 export const run = async ({ sourcePath }: { sourcePath: string }) => {
   const dataPath = resolve(process.cwd(), sourcePath);
   const REQUIRE_ERROR = `Failed to require('${dataPath}');`;
-  const source = tryPanic(() => require(dataPath), REQUIRE_ERROR);
+  const source = tryPanic(() => require(dataPath), REQUIRE_ERROR) as HelpDocumentSource;
   const GET_DOCUMENT_ERROR = `Failed to call getHelpDocument() from ${dataPath}`;
-  const tree = await tryPanic(() => source.getHelpDocument(), GET_DOCUMENT_ERROR);
+  const tree = (await tryPanic(() => source.getHelpDocument(), GET_DOCUMENT_ERROR)) as Node;
   const interpreter = createTreeInterpreter(tree);
   start(interpreter);
 };
 
-export const start = async (interpreter: TreeInterpreter): Promise<void> => {
+export const start = async (interpreter: TreeActor): Promise<void> => {
+  let wasLoading = false;
+  let promptPending = false;
+
   const renderChoice = (currentNode: Node) => {
-    console.log(chalk.green('?'), chalk.bold(currentNode.label));
+    console.log(chalk.green('✔'), chalk.bold(currentNode.label));
   };
 
   const showLoadingStatus = (currentNode: Node) => {
@@ -49,44 +50,75 @@ export const start = async (interpreter: TreeInterpreter): Promise<void> => {
   };
 
   const hideLoadingStatus = () => {
-    stdout.clearLine(0);
-    stdout.moveCursor(-LOADING_MESSAGE.length, 0);
-    stdout.moveCursor(0, -1);
-    stdout.clearLine(0);
-    stdout.write('');
+    if (stdout.isTTY) {
+      stdout.clearLine(0);
+      stdout.moveCursor(-LOADING_MESSAGE.length, 0);
+      stdout.moveCursor(0, -1);
+      stdout.clearLine(0);
+      stdout.write('');
+    }
   };
 
   const listChildNodes = async (branch: Branch) => {
-    const { childIndex } = await prompt<ChosenAnswer>({
-      choices: getChoices(branch),
-      message: branch.label,
-      name: 'childIndex',
-      type: 'list',
-    });
-    interpreter.send({
-      type: 'SELECT_CHILD',
-      childIndex,
-    });
+    if (promptPending) {
+      return;
+    }
+    promptPending = true;
+
+    try {
+      const childIndex = await select<number>({
+        message: branch.label,
+        choices: getChoices(branch),
+      });
+      // Reset promptPending BEFORE sending the event to avoid race condition
+      // where the state transition triggers a new subscription callback
+      // while we're still inside this try block
+      promptPending = false;
+      interpreter.send({
+        type: 'SELECT_CHILD',
+        childIndex,
+      });
+    } catch (err) {
+      promptPending = false;
+      throw err;
+    }
   };
 
   const renderValue = async (leaf: Leaf) => {
     console.log('');
-    console.log(renderToCli(leaf.value));
+    console.log(await renderToCli(leaf.value));
   };
 
-  interpreter.onTransition(async ({ context: { currentNode }, event, matches }) => {
-    if (matches({ resolveBranch: 'loading' })) {
+  interpreter.subscribe((snapshot) => {
+    const context = snapshot.context as TreeContext;
+    const currentNode = context.currentNode;
+
+    const isLoading = snapshot.matches({ resolveBranch: 'loading' });
+    const isRenderBranch = snapshot.matches('renderBranch');
+    const isRenderLeaf = snapshot.matches('renderLeaf');
+    const isRenderValue = snapshot.matches('renderValue');
+
+    // Handle loading state
+    if (isLoading && !wasLoading) {
+      wasLoading = true;
       showLoadingStatus(currentNode);
-    } else if (event.type === 'done.invoke.getChildren') {
+      return;
+    }
+
+    // Hide loading when we leave the loading state
+    if (wasLoading && !isLoading) {
+      wasLoading = false;
       hideLoadingStatus();
     }
-    if (matches('renderBranch') && isBranch(currentNode)) {
-      await listChildNodes(currentNode);
-    } else if (matches('renderLeaf')) {
+
+    // Handle render states
+    if (isRenderBranch && isBranch(currentNode)) {
+      listChildNodes(currentNode);
+    } else if (isRenderLeaf) {
       renderChoice(currentNode);
       interpreter.send({ type: 'FINALISE' });
-    } else if (matches('renderValue') && isLeaf(currentNode)) {
-      await renderValue(currentNode);
+    } else if (isRenderValue && isLeaf(currentNode)) {
+      renderValue(currentNode);
     }
   });
 

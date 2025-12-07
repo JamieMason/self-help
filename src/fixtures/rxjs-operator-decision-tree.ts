@@ -1,16 +1,11 @@
-import { Branch, Node } from '..';
-
-const withRandomDelay = (children: Node[]) => (): Promise<Node[]> =>
-  new Promise((resolve) =>
-    setTimeout(() => resolve(children), (Math.floor(Math.random() * 5) + 1) * 1000),
-  );
+import type { Branch } from '..';
 
 export const getHelpDocument = (): Branch => ({
   label: 'How can we help?',
   children: [
     {
       label: 'I have one existing Observable, and',
-      children: withRandomDelay([
+      children: [
         {
           label: 'I want to change each emitted value',
           children: [
@@ -450,7 +445,10 @@ export const getHelpDocument = (): Branch => ({
             {
               label: 'I want to re-subscribe',
               children: [
-                { label: 'immediately', value: 'https://rxjs.dev/api/operators/retry' },
+                {
+                  label: 'immediately',
+                  value: 'https://rxjs.dev/api/operators/retry',
+                },
                 {
                   label: 'when another Observable emits',
                   value: 'https://rxjs.dev/api/operators/retryWhen',
@@ -465,7 +463,10 @@ export const getHelpDocument = (): Branch => ({
             {
               label: 'I want to re-subscribe',
               children: [
-                { label: 'immediately', value: 'https://rxjs.dev/api/operators/repeat' },
+                {
+                  label: 'immediately',
+                  value: 'https://rxjs.dev/api/operators/repeat',
+                },
                 {
                   label: 'when another Observable emits',
                   value: 'https://rxjs.dev/api/operators/repeatWhen',
@@ -526,11 +527,11 @@ export const getHelpDocument = (): Branch => ({
             },
           ],
         },
-      ]),
+      ],
     },
     {
       label: 'I have some Observables to combine together as one Observable, and',
-      children: withRandomDelay([
+      children: [
         {
           label: 'I want to receive values only from the Observable that emits a value first',
           value: 'https://rxjs.dev/api/operators/race',
@@ -560,11 +561,11 @@ export const getHelpDocument = (): Branch => ({
           label: 'I want to subscribe to each in order',
           value: 'https://rxjs.dev/api/operators/concat',
         },
-      ]),
+      ],
     },
     {
       label: 'I have no Observables yet, and',
-      children: withRandomDelay([
+      children: [
         {
           label: 'I want to create a new Observable',
           children: [
@@ -625,7 +626,10 @@ export const getHelpDocument = (): Branch => ({
             {
               label: 'that emits values on a timer',
               children: [
-                { label: 'regularly', value: 'https://rxjs.dev/api/operators/interval' },
+                {
+                  label: 'regularly',
+                  value: 'https://rxjs.dev/api/operators/interval',
+                },
                 {
                   label: 'with an optional initial delay',
                   value: 'https://rxjs.dev/api/operators/timer',
@@ -651,7 +655,7 @@ export const getHelpDocument = (): Branch => ({
             },
           ],
         },
-      ]),
+      ],
     },
   ],
 });

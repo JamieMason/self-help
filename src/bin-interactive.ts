@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import * as program from 'commander';
+import { program } from 'commander';
 import { isString } from 'lodash';
 import { run } from './interactive';
 
@@ -9,8 +9,10 @@ program
   .option('-s, --source <path>', 'path to self-help document')
   .parse(process.argv);
 
-if (program.source && isString(program.source)) {
-  run({ sourcePath: program.source });
+const options = program.opts<{ source?: string }>();
+
+if (options.source && isString(options.source)) {
+  run({ sourcePath: options.source });
 } else {
   program.outputHelp();
   process.exit(1);

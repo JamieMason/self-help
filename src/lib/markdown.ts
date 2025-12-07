@@ -1,15 +1,11 @@
-import * as marked from 'marked';
-import * as TerminalRenderer from 'marked-terminal';
+import { marked } from 'marked';
+import { markedTerminal } from 'marked-terminal';
 import * as prettier from 'prettier';
-import { Node } from '..';
+import type { Node } from '..';
 import { isAsyncBranch, isBranch, isLeaf } from '../machine/tree/nodes';
 
-marked.setOptions({
-  renderer: new TerminalRenderer({
-    reflowText: false,
-    tab: 2,
-  }),
-});
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+marked.use(markedTerminal() as any);
 
 const prettierrc: prettier.Options = {
   parser: 'markdown',
@@ -42,5 +38,7 @@ export const toMarkdownFile = async (node: Node): Promise<string> => {
   return '';
 };
 
-export const renderToCli = (markdown: string) =>
-  marked(prettier.format(markdown, prettierrc)).trim();
+export const renderToCli = async (markdown: string): Promise<string> => {
+  const formatted = await prettier.format(markdown, prettierrc);
+  return marked.parse(formatted) as string;
+};

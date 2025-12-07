@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es2017", "es6"],
+    "module": "commonjs",
+    "moduleResolution": "node",
     "outDir": "./dist",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es3"
+    "target": "es2017"
   },
   "include": ["./package.json", "./src/**/*.ts"],
   "exclude": ["./src/**/*.spec.ts"]

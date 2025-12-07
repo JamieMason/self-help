@@ -1,9 +1,9 @@
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
-export const tryPanic = (fn: (...args: any[]) => any, message: string) => {
+export const tryPanic = (fn: (...args: unknown[]) => unknown, message: string) => {
   try {
     return fn();
-  } catch (err) {
+  } catch (_) {
     console.error(chalk.red(message));
     process.exit(1);
   }

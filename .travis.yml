@@ -4,9 +4,8 @@ matrix:
 node_js:
   - 10.15.0
 before_script:
-  - curl -L
-    https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
-    > ./codeclimate-test-reporter
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 >
+    ./codeclimate-test-reporter
   - chmod +x ./codeclimate-test-reporter
   - ./codeclimate-test-reporter before-build
   - npm run build
