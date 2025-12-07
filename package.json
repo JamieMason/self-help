@@ -43,15 +43,36 @@
   "files": [
     "dist"
   ],
+  "funding": "https://github.com/sponsors/JamieMason",
   "homepage": "https://github.com/JamieMason/self-help#readme",
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "command-line",
+    "decision-tree",
+    "documentation",
+    "faq",
+    "flowchart",
+    "guide",
+    "interactive",
+    "markdown",
+    "prompts",
+    "questionnaire",
+    "terminal",
+    "troubleshooting",
+    "tutorial",
+    "walkthrough",
+    "wizard"
+  ],
   "license": "MIT",
-  "repository": "JamieMason/self-help",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamieMason/self-help.git"
+  },
   "scripts": {
     "build": "tsc --project .",
-    "format": "prettier --write './src/**/*.ts'",
-    "prebuild": "rm -rf dist ./test/dist",
-    "prepack": "npm run build",
+    "format": "prettier --write .",
+    "prebuild": "rm -rf dist",
+    "prepack": "pnpm run build",
     "release": "release-it",
     "test": "vitest run"
   },
