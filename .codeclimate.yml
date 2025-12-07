@@ -1,4 +1,0 @@
-languages:
-  TypeScript: true
-exclude_paths:
-  - 'dist/*'
